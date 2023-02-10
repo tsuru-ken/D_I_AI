@@ -1,4 +1,9 @@
-<h1>Documents</h1>
+
+<% if current_user.try(:admin?) %>
+  <h1>Documents_admin</h1>
+<% else %>
+  <h1>Documents</h1>
+<% end %>
 
 <table>
   <thead>
