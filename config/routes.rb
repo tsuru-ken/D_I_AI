@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+  # OCR関連
   resources :documents do
     get 'texts', to: 'documents#execute_ocr'
     get 'vision_texts', to: 'documents#execute_vision_api'
   end
 
+
   root to: 'documents#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  # ログイン関連
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end
