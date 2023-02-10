@@ -42,7 +42,7 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  
+
   # デバック関連
   gem 'pry-rails'
   gem 'better_errors'
@@ -62,3 +62,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 画像保存用
 gem 'carrierwave'
+
+# OCR関連
+gem 'rtesseract'

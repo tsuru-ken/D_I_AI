@@ -57,6 +57,18 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def execute_ocr
+    @document = Document.find(params[:document_id])
+    # ローカル保存用
+    image_url = "#{Rails.root}/public#{@document.document_image.url}"
+
+    # S3の場合はそそままのURL
+    # image_url = @document.document_image.url
+    image = RTesseract.new(image_url, lang: params[:lamguage])
+    @text = image.to_s.gsub(/(\r\n|\r|\n)/, '\\n')
+    @text = 'テキストが検出できませんでした' if @text.blank?
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_document
