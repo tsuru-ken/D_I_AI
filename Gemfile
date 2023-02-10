@@ -65,3 +65,6 @@ gem 'carrierwave'
 
 # OCR関連
 gem 'rtesseract'
+gem 'google-cloud-vision'
+
+gem 'dotenv-rails'
