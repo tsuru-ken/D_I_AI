@@ -1,5 +1,11 @@
+<% if current_user.try(:admin?) %>
+  <h1>DIA_admin</h1>
+<% else %>
+  <h1>DIA</h1>
+<% end %>
+
 <div class="text-center">
-  <h2 class="my-3 fw-bold">このアプリはAIを手軽に使える、AI会社を探せる。プラットフォームアプリになります。</h2>
+  <h2 class="my-3 fw-bold">このアプリはAIを手軽に試せる、AI会社を探せる。プラットフォームアプリになります。</h2>
   <h4>世の中にAIを作れるアプリや、</h4>
   <h4>AIの開発には様々な問題点があります。</h4>
   <h4>このアプリではそれらを解決する糸口としてご利用いただけます。</h4>
