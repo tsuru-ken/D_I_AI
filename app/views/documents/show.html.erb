@@ -19,8 +19,8 @@
   <p>
   <%= form_with url: document_texts_path(@document.id), method: :get, local: false do |form| %>
     <strong>Language:</strong>
-    English:<%= form.radio_button :Language, 'eng', checked: true %>
-    Japanese:<%= form.radio_button :Language, 'jpn' %>
+    English:<%= form.radio_button :language, 'eng', checked: true %>
+    Japanese:<%= form.radio_button :language, 'jpn' %>
     <br />
     <%= submit_tag "ライブラリのOCR実行"%>
     <% end %>

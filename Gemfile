@@ -65,9 +65,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'carrierwave'
 
 # OCR関連
-gem 'rtesseract'
+
 gem 'google-cloud-vision'
 gem 'dotenv-rails'
+gem 'rtesseract'
 
 # ログイン関連
 gem 'devise'

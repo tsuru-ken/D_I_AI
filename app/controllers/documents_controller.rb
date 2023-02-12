@@ -67,7 +67,7 @@ class DocumentsController < ApplicationController
 
     # S3の場合はそそままのURL
     # image_url = @document.document_image.url
-    image = RTesseract.new(image_url, lang: params[:lamguage])
+    image = RTesseract.new(image_url, lang: params[:language])
     @text = image.to_s.gsub(/(\r\n|\r|\n)/, '\\n')
     @text = 'テキストが検出できませんでした' if @text.blank?
   end
