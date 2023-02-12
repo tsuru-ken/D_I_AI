@@ -1,0 +1,29 @@
+<h2 >選択画面</h2>
+
+<div>
+  <%= form_tag documents_path, method: :get, class: "form-group" do %>
+    <p>画像処理</p>
+    <%= submit_tag "試す", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_tag documents_path, method: :get, class: "form-group" do %>
+    <p>自然言語処理</p>
+    <%= submit_tag "試す", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_tag documents_path, method: :get, class: "form-group" do %>
+    <p>異音検知</p>
+    <%= submit_tag "試す", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_tag documents_path, method: :get, class: "form-group" do %>
+    <p>時系列解析</p>
+    <%= submit_tag "試す", class: "btn btn-primary" %>
+  <% end %>
+</div>

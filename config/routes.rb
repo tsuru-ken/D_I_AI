@@ -2,10 +2,9 @@ Rails.application.routes.draw do
   root "home#index"
   get "home/top", to: "home#top"
 
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
-  resources :users, only: :show
+  resources :users, only: [:show, :index]
 
   # OCR関連
   resources :documents do
@@ -13,16 +12,10 @@ Rails.application.routes.draw do
     get 'vision_texts', to: 'documents#execute_vision_api'
   end
 
-
-
-
-  # root to: 'documents#index'
-
   # ログイン関連
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
-
 end
 
 
