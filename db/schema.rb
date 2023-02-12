@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_11_131857) do
+ActiveRecord::Schema.define(version: 2023_02_12_163526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ai_categories", force: :cascade do |t|
+    t.string "genre", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "costs", force: :cascade do |t|
+    t.string "breakdown", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "documents", force: :cascade do |t|
     t.string "title"
@@ -23,6 +35,53 @@ ActiveRecord::Schema.define(version: 2023_02_11_131857) do
     t.string "document_image"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
+  end
+
+  create_table "partner_ai_category_labels", force: :cascade do |t|
+    t.bigint "partner_id", null: false
+    t.bigint "ai_category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ai_category_id"], name: "index_partner_ai_category_labels_on_ai_category_id"
+    t.index ["partner_id"], name: "index_partner_ai_category_labels_on_partner_id"
+  end
+
+  create_table "partner_cost_labels", force: :cascade do |t|
+    t.bigint "partner_id", null: false
+    t.bigint "cost_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cost_id"], name: "index_partner_cost_labels_on_cost_id"
+    t.index ["partner_id"], name: "index_partner_cost_labels_on_partner_id"
+  end
+
+  create_table "partner_service_content_labels", force: :cascade do |t|
+    t.bigint "partner_id", null: false
+    t.bigint "service_content_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["partner_id"], name: "index_partner_service_content_labels_on_partner_id"
+    t.index ["service_content_id"], name: "index_partner_service_content_labels_on_service_content_id"
+  end
+
+  create_table "partners", force: :cascade do |t|
+    t.string "name", limit: 30, null: false
+    t.text "address", null: false
+    t.text "url", null: false
+    t.string "established", null: false
+    t.text "service"
+    t.string "engineer"
+    t.bigint "provision"
+    t.text "product"
+    t.text "case"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "service_contents", force: :cascade do |t|
+    t.string "division", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,4 +109,10 @@ ActiveRecord::Schema.define(version: 2023_02_11_131857) do
   end
 
   add_foreign_key "documents", "users"
+  add_foreign_key "partner_ai_category_labels", "ai_categories"
+  add_foreign_key "partner_ai_category_labels", "partners"
+  add_foreign_key "partner_cost_labels", "costs"
+  add_foreign_key "partner_cost_labels", "partners"
+  add_foreign_key "partner_service_content_labels", "partners"
+  add_foreign_key "partner_service_content_labels", "service_contents"
 end
