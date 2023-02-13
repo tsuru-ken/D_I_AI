@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
+  # get '/partners/confirm', to: 'partners#confirm'
+
 
   # get 'partners/index', to: 'partners#index'
 

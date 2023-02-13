@@ -1,5 +1,10 @@
 <h1>会社一覧</h1>
 
+<%= form_with url: partners_path, method: :get, local: true do |form| %>
+  <%= form.select("cost_id", Cost.pluck(:breakdown, :id), { include_blank: true }) %>
+  <%= form.submit 'Search', breakdown: nil %>
+<% end %>
+
 <table>
   <tr>
     <th>会社名</th>
@@ -18,6 +23,11 @@
     <td><%= link_to '詳細を確認する', partner_path(partner.id) %></td>
     <td><%= link_to "会社情報を編集する", edit_partner_path(partner.id) %></td>
     <td><%= link_to '会社情報を削除する', partner_path(partner.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+    <td>
+      <% partner.costs.each do |cost| %>
+        <%= partner.breakdown %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>

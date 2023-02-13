@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_12_163526) do
+ActiveRecord::Schema.define(version: 2023_02_13_124743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(version: 2023_02_12_163526) do
     t.text "case"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_partners_on_user_id"
   end
 
   create_table "service_contents", force: :cascade do |t|
@@ -115,4 +117,5 @@ ActiveRecord::Schema.define(version: 2023_02_12_163526) do
   add_foreign_key "partner_cost_labels", "partners"
   add_foreign_key "partner_service_content_labels", "partners"
   add_foreign_key "partner_service_content_labels", "service_contents"
+  add_foreign_key "partners", "users"
 end
