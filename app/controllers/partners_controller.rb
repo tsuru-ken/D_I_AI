@@ -61,7 +61,7 @@ class PartnersController < ApplicationController
   private
 
   def partner_params
-    params.require(:partner).permit(:name, :address, :url, :established, cost_ids: [])
+    params.require(:partner).permit(:name, :address, :url, :established, { cost_ids: [] })
   end
 
   def set_partner

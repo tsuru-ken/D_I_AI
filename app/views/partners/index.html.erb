@@ -25,7 +25,7 @@
     <td><%= link_to '会社情報を削除する', partner_path(partner.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
     <td>
       <% partner.costs.each do |cost| %>
-        <%= partner.partner_cost_labels %>
+        <%= partner.breakdown %>
       <% end %>
     </td>
   </tr>
