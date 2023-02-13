@@ -2,6 +2,15 @@ Rails.application.routes.draw do
   root "home#index"
   get "home/top", to: "home#top"
 
+  # 検索機能関連
+  resources :partners do
+    collection do
+      post :confirm
+    end
+  end
+
+  # get 'partners/index', to: 'partners#index'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   resources :users, only: [:show, :index]

@@ -1,0 +1,34 @@
+<%= form_with(model: @partner, local: true ,url: choose_new_or_edit ) do |form| %>
+  <% if @partner.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @partner.errors.count %>件のエラーがあります。</h2>
+    <ul>
+    <% @partner.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <div class="partner_name">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="partner_address">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+  <div class="partner_address">
+    <%= form.label :url %>
+    <%= form.text_field :url %>
+  </div>
+  <div class="partner_established">
+    <%= form.label :established %>
+    <%= form.text_field :established %>
+  </div>
+  
+  <%= form.submit %>
+  
+<% end %>
+
+<%= link_to "会社一覧画面にもどる", partners_path %>

@@ -1,0 +1,24 @@
+<h1>会社一覧</h1>
+
+<table>
+  <tr>
+    <th>会社名</th>
+    <th>住所</th>
+    <th>会社URL</th>
+    <th>会社設立年</th>
+
+  </tr>
+
+<% @partners.each do |partner| %>
+  <tr>
+    <td><%= partner.name %></td>
+    <td><%= partner.address %></td>
+    <td><%= text_url_to_link(h(partner.url)).html_safe %></td>
+    <td><%= partner.established %></td>
+    <td><%= link_to '詳細を確認する', partner_path(partner.id) %></td>
+    <td><%= link_to "会社情報を編集する", edit_partner_path(partner.id) %></td>
+    <td><%= link_to '会社情報を削除する', partner_path(partner.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+  </tr>
+<% end %>
+</table>
+<%= link_to '新しく会社を登録する', new_partner_path %>
