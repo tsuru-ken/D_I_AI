@@ -27,12 +27,12 @@
     <%= form.text_field :established %>
   </div>
   <div class="field">
-    <%= form.collection_check_boxes(:cost_ids, Cost.all, :id, :breakdow) %>
+    <%= form.collection_check_boxes(:cost_ids, Cost.all, :id, :breakdown) %>
   </div>
 
-  
+
   <%= form.submit %>
-  
+
 <% end %>
 
 <%= link_to "会社一覧画面にもどる", partners_path %>
