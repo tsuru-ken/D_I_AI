@@ -65,7 +65,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'carrierwave'
 
 # OCR関連
-
 gem 'google-cloud-vision'
 gem 'dotenv-rails'
 gem 'rtesseract'
@@ -76,3 +75,6 @@ gem 'rexml'
 gem 'devise-i18n'
 gem 'rails_admin', '~> 3.0'
 gem 'cancancan'
+
+# 検索機能
+gem 'ransack'
