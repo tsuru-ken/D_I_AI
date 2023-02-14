@@ -51,14 +51,15 @@ class PartnersController < ApplicationController
   def confirm
     @partner = @current_user.partners.build(partner_params)
     @costs = Cost.all
-    # @cost_ids = params[:partner][:cost_id]
+    @service_contents = Service_content.all
+    @ai_categories = Ai_category.all
     render :new if @partner.invalid?
     # binding.pry
   end
 
   private
   def partner_params
-    params.require(:partner).permit(:name, :address, :url, :established, cost_ids: [])
+    params.require(:partner).permit(:name, :address, :url, :established, {cost_ids: []}, {service_content_ids: []}, {ai_category_ids:[]})
   end
 
   def set_partner

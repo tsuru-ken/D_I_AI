@@ -1,8 +1,23 @@
 <h1>会社一覧</h1>
 
 <%= form_with url: partners_path, method: :get, local: true do |form| %>
+  <%# コスト感 %>
+  <div class="form-group">
   <%= form.select("cost_id", Cost.pluck(:breakdown, :id), { include_blank: true }) %>
   <%= form.submit 'Search', breakdown: nil %>
+  <div>
+
+  <%# 提供サービス %>
+  <%# <div class="form-group"> %>
+  <%# <%= form.select("service_content_id", Service_content.pluck(:division, :id), { include_blank: true }) %> %>
+  <%# <%= form.submit 'Search', division: nil %> %>
+  <%# <div> %>
+
+  <%# AIカテゴリ %>
+  <%# <div class="form-group"> %>
+  <%# <%= form.select("ai_category_id", Ai_category.pluck(:genre, :id), { include_blank: true }) %> %>
+  <%# <%= form.submit 'Search', genre: nil %> %>
+  <%# <div> %>
 <% end %>
 
 <table>
@@ -12,6 +27,8 @@
     <th>会社URL</th>
     <th>会社設立年</th>
     <th>コスト感</th>
+    <th>提供サービス</th>
+    <th>AIカテゴリ</th>
     <th>詳細</th>
     <th>編集</th>
     <th>削除</th>
@@ -25,10 +42,30 @@
     <td><%= partner.address %></td>
     <td><%= text_url_to_link(h(partner.url)).html_safe %></td>
     <td><%= partner.established %></td>
+    
+    <%# コスト感 %>
     <td>
       <% partner.costs.each do |cost| %>
         <p>
           <%= cost.breakdown %>
+        </p>
+      <% end %>
+    </td>
+
+    <%# 提供サービス %>
+    <td>
+      <% partner.service_contents.each do |service_content| %>
+        <p>
+          <%= service_contents.division %>
+        </p>
+      <% end %>
+    </td>
+
+    <%# AIカテゴリ %>
+    <td>
+      <% partner.ai_categories.each do |ai_category| %>
+        <p>
+          <%= cost.genre %>
         </p>
       <% end %>
     </td>
