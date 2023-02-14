@@ -8,11 +8,11 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
-  # get '/partners/confirm', to: 'partners#confirm'
 
 
-  # get 'partners/index', to: 'partners#index'
 
+
+  # RailsAdmin関連
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   resources :users, only: [:show, :index]

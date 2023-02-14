@@ -5,17 +5,21 @@
   <%= form.hidden_field :address %>
   <%= form.hidden_field :url %>
   <%= form.hidden_field :established %>
+  <% @partner.costs.each do |cost|%>
+  <%# <% binding.pry %>
+  <%= form.hidden_field :cost_ids , multiple: true, value: cost.id %>
+  <% end %>
+
 
   <p>会社名: <%= @partner.name %></p>
   <p>住所: <%= @partner.address %></p>
   <p>会社URL: <%= @partner.url %></p>
   <p>会社設立年: <%= @partner.established %></p>
-
-  <%# <p>コスト感: %>
-   <%# <% @costs.each do |cost| %> %>
-        <%# <%= cost.breakdown %> %>
-      <%# <% end %> %>
-  <%# <p> %>
+  <p>コスト感:
+    <% @partner.costs.each do |cost| %>
+      <%= cost.breakdown %>
+    <% end %>
+  <p>
 
   <%= form.submit  "登録する" %>
   <%= form.submit "戻る", name: 'back' %>

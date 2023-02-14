@@ -4,10 +4,8 @@ class PartnersController < ApplicationController
   before_action :set_current_user
 
   def index
-    @partners = Partner.all
-    @partners = @partners.joins(:costs).where(costs: { id: params[:cost_id] }) if params[:cost_id].present?
-    # @partners = rails_admin.partners
     # binding.pry
+    @partners = Partner.all
   end
 
   def show
@@ -18,14 +16,11 @@ class PartnersController < ApplicationController
   end
 
   def create
-    # @partner = Partner.new(partner_params)
-    # @partner.user_id = current_user.id
-    # Partner.create(partner_params)
-    # @partner = Partner.new(partner_params)
-    # @partner.user_id = current_user.id
     @partner = current_user.partners.build(partner_params)
     render :new if @partner.invalid?
-    if params[:back]
+    # binding.pry
+    if
+      params[:back]
       render :new
     else
       if @partner.save
@@ -55,13 +50,15 @@ class PartnersController < ApplicationController
 
   def confirm
     @partner = @current_user.partners.build(partner_params)
+    @costs = Cost.all
+    # @cost_ids = params[:partner][:cost_id]
     render :new if @partner.invalid?
+    # binding.pry
   end
 
   private
-
   def partner_params
-    params.require(:partner).permit(:name, :address, :url, :established, { cost_ids: [] })
+    params.require(:partner).permit(:name, :address, :url, :established, cost_ids: [])
   end
 
   def set_partner

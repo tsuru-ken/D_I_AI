@@ -11,6 +11,11 @@
     <th>住所</th>
     <th>会社URL</th>
     <th>会社設立年</th>
+    <th>コスト感</th>
+    <th>詳細</th>
+    <th>編集</th>
+    <th>削除</th>
+
 
   </tr>
 
@@ -20,14 +25,16 @@
     <td><%= partner.address %></td>
     <td><%= text_url_to_link(h(partner.url)).html_safe %></td>
     <td><%= partner.established %></td>
+    <td>
+      <% partner.costs.each do |cost| %>
+        <p>
+          <%= cost.breakdown %>
+        </p>
+      <% end %>
+    </td>
     <td><%= link_to '詳細を確認する', partner_path(partner.id) %></td>
     <td><%= link_to "会社情報を編集する", edit_partner_path(partner.id) %></td>
     <td><%= link_to '会社情報を削除する', partner_path(partner.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
-    <td>
-      <% partner.costs.each do |cost| %>
-        <%= partner.breakdown %>
-      <% end %>
-    </td>
   </tr>
 <% end %>
 </table>
