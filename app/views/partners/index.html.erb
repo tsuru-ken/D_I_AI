@@ -27,10 +27,10 @@
 <table>
   <tr>
     <th>会社名</th>
-    <th>住所</th>
-    <th>会社URL</th>
-    <th>会社設立年</th>
-    <th>サービス概要</th>
+    <%# <th>住所</th> %>
+    <%# <th>会社URL</th> %>
+    <%# <th>会社設立年</th> %>
+    <%# <th>サービス概要</th> %>
     <th>クラウド/オンプレミス</th>
     <th>提供サービス</th>
     <th>AIカテゴリ</th>
@@ -46,10 +46,10 @@
 <% @partners.each do |partner| %>
   <tr>
     <td><%= partner.name %></td>
-    <td><%= partner.address %></td>
-    <td><%= text_url_to_link(h(partner.url)).html_safe %></td>
-    <td><%= partner.established %></td>
-    <td><%= partner.service %></td>
+    <%# <td><%= partner.address %></td> %>
+    <%# <td><%= text_url_to_link(h(partner.url)).html_safe %></td> %>
+    <%# <td><%= partner.established %></td> %>
+    <%# <td><%= partner.service %></td> %>
     <td><%= partner.provision %></td>
     <%# 提供サービス %>
     <td>
