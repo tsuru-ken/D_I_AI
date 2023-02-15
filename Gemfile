@@ -79,5 +79,5 @@ gem 'cancancan'
 # 検索機能
 gem 'ransack'
 
-# URLリンク
+# URLリンク機能
 gem 'rinku'

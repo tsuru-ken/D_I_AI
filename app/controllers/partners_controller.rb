@@ -4,11 +4,8 @@ class PartnersController < ApplicationController
   before_action :set_current_user
 
   def index
-    # binding.pry
-    @partners = Partner.all
-
     @search = Partner.ransack(params[:q])
-    @partners = @search.result(distinct: true)
+    @partners = @search.result
   end
 
   def show
@@ -22,8 +19,7 @@ class PartnersController < ApplicationController
     @partner = current_user.partners.build(partner_params)
     render :new if @partner.invalid?
     # binding.pry
-    if
-      params[:back]
+    if params[:back]
       render :new
     else
       if @partner.save
@@ -35,9 +31,16 @@ class PartnersController < ApplicationController
   end
 
   def edit
+    unless @partner.user_id == current_user.id
+      redirect_to partners_path, alert: '不正なアクセスです'
+    end
   end
 
   def update
+    unless @partner.user_id == current_user.id
+      redirect_to partners_path, alert: '不正なアクセスです'
+    end
+
     if @partner.update(partner_params)
       redirect_to partners_path, notice: "会社情報を編集しました！"
     else
@@ -46,10 +49,13 @@ class PartnersController < ApplicationController
   end
 
   def destroy
+    unless @partner.user_id == current_user.id
+      redirect_to partners_path, alert: '不正なアクセスです'
+    end
+
     @partner.destroy
     redirect_to partners_path, notice:"会社情報を削除しました！"
   end
-
 
   def confirm
     @partner = @current_user.partners.build(partner_params)
@@ -60,12 +66,10 @@ class PartnersController < ApplicationController
     # binding.pry
   end
 
-
   private
 
-
   def partner_params
-    params.require(:partner).permit(:name, :address, :url, :established, :service,:provision, :engineer, :product, :case , {cost_ids: []}, {service_content_ids: []}, {ai_category_ids:[]})
+    params.require(:partner).permit(:name, :address, :url, :established, :service, :provision, :engineer, :product, :case, {cost_ids: []}, {service_content_ids: []}, {ai_category_ids: []})
   end
 
   def set_partner

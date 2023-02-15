@@ -2,40 +2,33 @@
 
 <%= form_with url: partners_path, method: :get, local: true do |form| %>
 
-  <p>コスト感</p>
-  <%= search_form_for @search do |f| %>
-    <% Cost.all.each do |cost| %>
-      <%= f.check_box :costs_id_eq_any, { multiple: true, checked: cost[:checked], disabled: cost[:disabled], include_hidden: false }, cost[:id] %>
-      <%= cost.breakdown %>
-    <% end %>
-    <%= f.submit "検索" %>
+  <%= form.fields_for :q do |f| %>
+    <%= f.label :costs_id_eq_any, "コスト感" %>
+    <%= f.collection_select :costs_id_eq, Cost.all, :id, :breakdown, { include_blank: true } %>
   <% end %>
 
+  <%= form.fields_for :q do |f| %>
+    <%= f.label :service_contents_id_eq_any, "提供サービス" %>
+    <%= f.collection_select :service_contents_id_eq, ServiceContent.all, :id, :division, { prompt: true } %>
+  <% end %>
 
-  <p>提供サービス</p>
-    <div class="form-group">
-      <%= form.select("service_content_id", ServiceContent.pluck(:division, :id), { include_blank: true }) %>
-      <%= form.submit 'Search', division: nil %>
-    <div>
-  
+  <%= form.fields_for :q do |f| %>
+    <%= f.label :ai_categories_id_eq_any, "AIカテゴリー" %>
+    <%= f.collection_select :ai_categories_id_eq, AiCategory.all, :id, :genre, { prompt: true } %>
+  <% end %>
 
-  <P>AIカテゴリ</p>
-    <div class="form-group">
-      <%= form.select("ai_category_id", AiCategory.pluck(:genre, :id), { include_blank: true }) %>
-      <%= form.submit 'Search', genre: nil %>
-    <div>
-  <P>
-  </p>
+  <%= form.fields_for :q do |f| %>
+  <%= f.label :name_cont, "会社名でキーワード検索" %>
+  <%= f.text_field :name_cont %>
+<% end %>
+
+  <%= form.submit "検索" %>
+
 <% end %>
 
 <table>
   <tr>
-    <%# <th><%= link_to '会社名', sort_name: true %></th> %>
     <th>会社名</th>
-    <%# <th>住所</th> %>
-    <%# <th>会社URL</th> %>
-    <%# <th>会社設立年</th> %>
-    <%# <th>サービス概要</th> %>
     <th>クラウド/オンプレミス</th>
     <th>提供サービス</th>
     <th>AIカテゴリ</th>
@@ -44,17 +37,15 @@
     <th>製品情報</th>
     <th>導入事例</th>
     <th>詳細</th>
-    <th>編集</th>
-    <th>削除</th>
+    <% if current_user %>
+      <th>編集</th>
+      <th>削除</th>
+    <% end %>
   </tr>
 
 <% @partners.each do |partner| %>
   <tr>
     <td><%= link_to partner.name, partner_path(partner.id) %></td>
-    <%# <td><%= partner.address %></td> %>
-    <%# <td><%= text_url_to_link(h(partner.url)).html_safe %></td> %>
-    <%# <td><%= partner.established %></td> %>
-    <%# <td><%= partner.service %></td> %>
     <td><%= partner.provision %></td>
     <%# 提供サービス %>
     <td>
@@ -84,8 +75,13 @@
     <td><%= partner.product %></td>
     <td><%= partner.case %></td> 
     <td><%= link_to '会社詳細画面', partner_path(partner.id) %></td>
-    <td><%= link_to "会社情報を編集する", edit_partner_path(partner.id) %></td>
-    <td><%= link_to '会社情報を削除する', partner_path(partner.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+    <% if partner.user == current_user %>
+      <td><%= link_to "会社情報を編集する", edit_partner_path(partner.id) %></td>
+      <td><%= link_to '会社情報を削除する', partner_path(partner.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+    <% else %>
+      <td></td>
+      <td></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
