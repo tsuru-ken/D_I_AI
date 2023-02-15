@@ -3,26 +3,28 @@
 <p>住所: <%= @partner.address %></p>
 <p>会社URL: <%= @partner.url %></p>
 <p>会社設立年: <%= @partner.established %></p>
-
-<p>コスト感:<% @partner.costs.pluck(:breakdown).each do |cost| %>
-    <li>
-      <%= cost %>
-    </li>
-  <% end %>
-</p>
-
+<p>サービス概要: <%= @partner.service %></p>
+<p>クラウド/オンプレミス: <%= @partner.provision %></p>
 <p>提供サービス:<% @partner.service_contents.pluck(:division).each do |service_content| %>
     <li>
       <%= service_content %>
     </li>
   <% end %>
 </p>
-
 <p>AIカテゴリー:<% @partner.ai_categories.pluck(:genre).each do |ai_category| %>
     <li>
       <%= ai_category %>
     </li>
   <% end %>
 </p>
+<p>コスト感:<% @partner.costs.pluck(:breakdown).each do |cost| %>
+    <li>
+      <%= cost %>
+    </li>
+  <% end %>
+</p>
+<p>技術者数: <%= @partner.engineer %></p>
+<p>製品名: <%= @partner.product %></p>
+<p>導入事例: <%= @partner.case %></p>
 
 <%=link_to "会社一覧に戻る",partners_path%>
