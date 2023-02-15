@@ -11,39 +11,56 @@
 <% end %>
 
   <div class="partner_name">
-    <%= form.label :name %>
+    <%= form.label :name ,"会社名" %>
     <%= form.text_field :name %>
   </div>
   <div class="partner_address">
-    <%= form.label :address %>
+    <%= form.label :address, "所在地"%>
     <%= form.text_field :address %>
   </div>
   <div class="partner_address">
-    <%= form.label :url %>
+    <%= form.label :url, "会社URL"%>
     <%= form.text_field :url %>
   </div>
   <div class="partner_established">
-    <%= form.label :established %>
+    <%= form.label :established, "会社設立年"%>
     <%= form.text_field :established %>
   </div>
-
-  <%# コスト感 %>
-  <div class="field">
-    <%= form.collection_check_boxes(:cost_ids, Cost.all, :id, :breakdown) %>
+  <div class="partner_service">
+    <%= form.label :service ,"サービス概要"%>
+    <%= form.text_field :service %>
   </div>
-
-  <%# 提供サービス %>
-  <div class="field">
-    <%= form.collection_check_boxes(:service_content_ids, ServiceContent.all, :id, :division) %>
+  <div class="partner_provision">
+    <%= form.label :provision,"クラウド/オンプレミス" %>
+    <%= form.text_field :provision %>
   </div>
-
-  <%# AIカテゴリ %>
-  <div class="field">
-    <%= form.collection_check_boxes(:ai_category_ids, AiCategory.all, :id, :genre) %>
+  <li>提供サービス</li>
+    <div class="field">
+      <%= form.collection_check_boxes(:service_content_ids, ServiceContent.all, :id, :division) %>
+    </div>
+  <li>AIカテゴリー</li>
+    <div class="field">
+      <%= form.collection_check_boxes(:ai_category_ids, AiCategory.all, :id, :genre) %>
+    </div>
+  <li>コスト感</li>
+    <div class="field">
+      <%= form.collection_check_boxes(:cost_ids, Cost.all, :id, :breakdown) %>
+    </div>
+  <div class="partner_engineer">
+    <%= form.label :engineer ,"技術者数"%>
+    <%= form.text_field :engineer %>
   </div>
-
-
-  <%= form.submit %>
+  <div class="partner_product">
+    <%= form.label :product ,"製品名"%>
+    <%= form.text_field :product %>
+  </div>
+  <div class="partner_case">
+    <%= form.label :case,"導入事例" %>
+    <%= form.text_field :case %>
+  </div>
+  <p>
+    <%= form.submit %>
+  </P>
 
 <% end %>
 
