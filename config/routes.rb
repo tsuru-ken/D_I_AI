@@ -8,8 +8,12 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
-
-
+  # get 'search', to: 'partners#search'
+  # resources :costs do
+  #   collection do
+  #     get 'search'
+  #   end
+  # end
 
 
   # RailsAdmin関連

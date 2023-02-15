@@ -6,6 +6,9 @@ class PartnersController < ApplicationController
   def index
     # binding.pry
     @partners = Partner.all
+
+    @search = Partner.ransack(params[:q])
+    @partners = @search.result(distinct: true)
   end
 
   def show
@@ -57,7 +60,10 @@ class PartnersController < ApplicationController
     # binding.pry
   end
 
+
   private
+
+
   def partner_params
     params.require(:partner).permit(:name, :address, :url, :established, :service,:provision, :engineer, :product, :case , {cost_ids: []}, {service_content_ids: []}, {ai_category_ids:[]})
   end

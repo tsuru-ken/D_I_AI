@@ -2,30 +2,35 @@
 
 <%= form_with url: partners_path, method: :get, local: true do |form| %>
 
-  <p>コスト感
-    <div class="form-group">
-      <%= form.select("cost_id", Cost.pluck(:breakdown, :id), { include_blank: true }) %>
-      <%= form.submit 'Search', breakdown: nil %>
-    <div>
-  </p>
+  <p>コスト感</p>
+  <%= search_form_for @search do |f| %>
+    <% Cost.all.each do |cost| %>
+      <%= f.check_box :costs_id_eq_any, { multiple: true, checked: cost[:checked], disabled: cost[:disabled], include_hidden: false }, cost[:id] %>
+      <%= cost.breakdown %>
+    <% end %>
+    <%= f.submit "検索" %>
+  <% end %>
 
-  <p>提供サービス
+
+  <p>提供サービス</p>
     <div class="form-group">
       <%= form.select("service_content_id", ServiceContent.pluck(:division, :id), { include_blank: true }) %>
       <%= form.submit 'Search', division: nil %>
     <div>
-  </p>
+  
 
-  <P>AIカテゴリ
+  <P>AIカテゴリ</p>
     <div class="form-group">
       <%= form.select("ai_category_id", AiCategory.pluck(:genre, :id), { include_blank: true }) %>
       <%= form.submit 'Search', genre: nil %>
     <div>
+  <P>
   </p>
 <% end %>
 
 <table>
   <tr>
+    <%# <th><%= link_to '会社名', sort_name: true %></th> %>
     <th>会社名</th>
     <%# <th>住所</th> %>
     <%# <th>会社URL</th> %>
@@ -45,7 +50,7 @@
 
 <% @partners.each do |partner| %>
   <tr>
-    <td><%= partner.name %></td>
+    <td><%= link_to partner.name, partner_path(partner.id) %></td>
     <%# <td><%= partner.address %></td> %>
     <%# <td><%= text_url_to_link(h(partner.url)).html_safe %></td> %>
     <%# <td><%= partner.established %></td> %>
@@ -77,8 +82,8 @@
     </td>
     <td><%= partner.engineer %></td>
     <td><%= partner.product %></td>
-    <td><%= partner.case %></td>  
-    <td><%= link_to '詳細を確認する', partner_path(partner.id) %></td>
+    <td><%= partner.case %></td> 
+    <td><%= link_to '会社詳細画面', partner_path(partner.id) %></td>
     <td><%= link_to "会社情報を編集する", edit_partner_path(partner.id) %></td>
     <td><%= link_to '会社情報を削除する', partner_path(partner.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
   </tr>

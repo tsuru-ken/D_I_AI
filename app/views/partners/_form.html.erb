@@ -32,7 +32,7 @@
   </div>
   <div class="partner_provision">
     <%= form.label :provision,"クラウド/オンプレミス" %>
-    <%= form.text_field :provision %>
+    <%= form.select :provision, Partner.provisions.keys, include_blank: "" %>
   </div>
   <li>提供サービス</li>
     <div class="field">

@@ -14,4 +14,8 @@ class Partner < ApplicationRecord
   validates :address, presence: true
   validates :url, presence: true
   validates :established, presence: true
+
+  enum provision: { 'クラウド': 0, 'オンプレミス': 1, 'その他': 2 }
+
+  # scope :sort_name, -> {order(name: :DESC)}
 end
