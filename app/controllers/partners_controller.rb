@@ -51,8 +51,8 @@ class PartnersController < ApplicationController
   def confirm
     @partner = @current_user.partners.build(partner_params)
     @costs = Cost.all
-    @service_contents = Service_content.all
-    @ai_categories = Ai_category.all
+    @service_contents = ServiceContent.all
+    @ai_categories = AiCategory.all
     render :new if @partner.invalid?
     # binding.pry
   end

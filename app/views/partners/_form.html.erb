@@ -34,12 +34,12 @@
 
   <%# 提供サービス %>
   <div class="field">
-    <%= form.collection_check_boxes(:service_content_ids, Service_content.all, :id, :division) %>
+    <%= form.collection_check_boxes(:service_content_ids, ServiceContent.all, :id, :division) %>
   </div>
 
   <%# AIカテゴリ %>
   <div class="field">
-    <%= form.collection_check_boxes(:ai_category_ids, Ai_category.all, :id, :genre) %>
+    <%= form.collection_check_boxes(:ai_category_ids, AiCategory.all, :id, :genre) %>
   </div>
 
 

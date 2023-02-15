@@ -7,15 +7,17 @@
   <%= form.hidden_field :established %>
   <%# コスト感 %>
   <% @partner.costs.each do |cost|%>
-  <%= form.hidden_field :cost_ids , multiple: true, value: cost.id %>
+    <%= form.hidden_field :cost_ids , multiple: true, value: cost.id %>
+  <% end %>
 
   <%# 提供サービス %>
   <% @partner.service_contents.each do |service_content|%>
-  <%= form.hidden_field :service_content_ids , multiple: true, value: service_content.id %>
+    <%= form.hidden_field :service_content_ids , multiple: true, value: service_content.id %>
+  <% end %>
 
   <%# AIカテゴリ %>
   <% @partner.ai_categories.each do |ai_category|%>
-  <%= form.hidden_field :ai_category_ids , multiple: true, value: ai_category.id %>
+    <%= form.hidden_field :ai_category_ids , multiple: true, value: ai_category.id %>
   <% end %>
 
 
@@ -34,16 +36,17 @@
   <%# 提供サービス %>
   <p>提供サービス:
     <% @partner.service_contents.each do |service_content| %>
-      <%= cost.division %>
+      <%= service_content.division %>
     <% end %>
   <p>
 
   <%# AIカテゴリ %>
   <p>AIカテゴリ:
     <% @partner.ai_categories.each do |ai_category| %>
-      <%= cost.genre %>
+      <%= ai_category.genre %>
     <% end %>
   <p>
+
 
   <%= form.submit  "登録する" %>
   <%= form.submit "戻る", name: 'back' %>
