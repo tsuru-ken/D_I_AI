@@ -4,4 +4,25 @@
 <p>会社URL: <%= @partner.url %></p>
 <p>会社設立年: <%= @partner.established %></p>
 
+<p>コスト感:<% @partner.costs.pluck(:breakdown).each do |cost| %>
+    <li>
+      <%= cost %>
+    </li>
+  <% end %>
+</p>
+
+<p>提供サービス:<% @partner.service_contents.pluck(:division).each do |service_content| %>
+    <li>
+      <%= service_content %>
+    </li>
+  <% end %>
+</p>
+
+<p>AIカテゴリー:<% @partner.ai_categories.pluck(:genre).each do |ai_category| %>
+    <li>
+      <%= ai_category %>
+    </li>
+  <% end %>
+</p>
+
 <%=link_to "会社一覧に戻る",partners_path%>
