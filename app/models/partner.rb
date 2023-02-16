@@ -10,8 +10,11 @@ class Partner < ApplicationRecord
 
   belongs_to :user
 
-  has_many :product_infos
-  has_many :case_studies
+  has_many :product_infos, dependent: :destroy
+  accepts_nested_attributes_for :product_infos
+
+  has_many :case_studies, dependent: :destroy
+  accepts_nested_attributes_for :case_studies
 
   validates :name, presence: true
   validates :address, presence: true

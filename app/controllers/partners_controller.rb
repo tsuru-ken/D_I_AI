@@ -9,24 +9,23 @@ class PartnersController < ApplicationController
   end
 
   def show
+    @partner = Partner.find(params[:id])
   end
 
   def new
     @partner = Partner.new
+    @partner.product_infos.build
+    @partner.case_studies.build
   end
 
   def create
     @partner = current_user.partners.build(partner_params)
-    render :new if @partner.invalid?
-    # binding.pry
     if params[:back]
       render :new
+    elsif @partner.save
+      redirect_to partners_path, notice: "会社情報を作成しました！"
     else
-      if @partner.save
-        redirect_to partners_path, notice: "会社情報を作成しました！"
-      else
-        render :new
-      end
+      render :new
     end
   end
 
@@ -63,13 +62,12 @@ class PartnersController < ApplicationController
     @service_contents = ServiceContent.all
     @ai_categories = AiCategory.all
     render :new if @partner.invalid?
-    # binding.pry
   end
 
   private
 
   def partner_params
-    params.require(:partner).permit(:name, :address, :url, :established, :service, :provision, :engineer, :product, :case, {cost_ids: []}, {service_content_ids: []}, {ai_category_ids: []})
+    params.require(:partner).permit(:name, :address, :url, :established, :service, :provision, :engineer, :product, :case, {cost_ids: []}, {service_content_ids: []}, {ai_category_ids: []}, product_infos_attributes: [:id, :name, :content, :image], case_studies_attributes: [:id, :name, :content, :image])
   end
 
   def set_partner

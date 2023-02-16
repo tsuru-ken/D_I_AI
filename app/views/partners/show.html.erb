@@ -27,4 +27,21 @@
 <p>製品名: <%= @partner.product %></p>
 <p>導入事例: <%= @partner.case %></p>
 
+<h1>製品情報</h1>
+<% @partner.product_infos.each do |product_info| %>
+<%# <%binding.pry %> %>
+  <P>製品名<h2><%= product_info.name %></h2></P>
+  <p>製品説明: <%= product_info.content %></p>
+  <p>製品画像: <%= product_info.image %></p>
+<% end %>
+
+<h1>製品情報</h1>
+<% @partner.case_studies.each do |case_study| %>
+<%# <%binding.pry %> %>
+  <P>製品名<h2><%= case_study.name %></h2></P>
+  <p>製品説明: <%= case_study.content %></p>
+  <p>製品画像: <%= case_study.image %></p>
+<% end %>
+
 <%=link_to "会社一覧に戻る",partners_path%>
+<%= link_to "編集", edit_partner_path(@partner) %>
