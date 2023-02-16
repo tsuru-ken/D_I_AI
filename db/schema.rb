@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_13_124743) do
+ActiveRecord::Schema.define(version: 2023_02_16_083837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 2023_02_13_124743) do
     t.string "genre", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "case_studies", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.text "image"
+    t.bigint "partner_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["partner_id"], name: "index_case_studies_on_partner_id"
   end
 
   create_table "costs", force: :cascade do |t|
@@ -80,6 +90,16 @@ ActiveRecord::Schema.define(version: 2023_02_13_124743) do
     t.index ["user_id"], name: "index_partners_on_user_id"
   end
 
+  create_table "product_infos", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.text "image"
+    t.bigint "partner_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["partner_id"], name: "index_product_infos_on_partner_id"
+  end
+
   create_table "service_contents", force: :cascade do |t|
     t.string "division", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -110,6 +130,7 @@ ActiveRecord::Schema.define(version: 2023_02_13_124743) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "case_studies", "partners"
   add_foreign_key "documents", "users"
   add_foreign_key "partner_ai_category_labels", "ai_categories"
   add_foreign_key "partner_ai_category_labels", "partners"
@@ -118,4 +139,5 @@ ActiveRecord::Schema.define(version: 2023_02_13_124743) do
   add_foreign_key "partner_service_content_labels", "partners"
   add_foreign_key "partner_service_content_labels", "service_contents"
   add_foreign_key "partners", "users"
+  add_foreign_key "product_infos", "partners"
 end

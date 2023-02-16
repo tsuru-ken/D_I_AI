@@ -10,6 +10,9 @@ class Partner < ApplicationRecord
 
   belongs_to :user
 
+  has_many :product_infos
+  has_many :case_studies
+
   validates :name, presence: true
   validates :address, presence: true
   validates :url, presence: true
