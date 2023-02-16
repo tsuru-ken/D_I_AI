@@ -40,9 +40,9 @@ https://drive.google.com/file/d/1qyHD5-Jwz6td5vt99H2kDZWM3ozp57WT/view?usp=shari
 ## ER図　
 raw.ioリンク
 https://drive.google.com/file/d/184uY-uuYTlHFZS6ao5c4Sky0D3UVyfsJ/view?usp=sharing
-![ER図](docs/ER.png)
+![ER図](/docs/ER.png)
 
 ## 画面遷移図
 draw.ioリンク
 https://drive.google.com/file/d/1U4dy4ENPh661sTDGtwJl7VwjsYlE2cqf/view?usp=sharing
-![画面遷移図](docs/ui-flow.png)
+![画面遷移図](/ui-flow.png)
