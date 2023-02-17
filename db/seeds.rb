@@ -1,6 +1,27 @@
 
 # Users
-admin_user = User.create(name: "つるけん", email: "admin@admin.com", password: "123456")
+# 管理者ユーザーの作成
+admin_user = User.create(name: "アドミンつるけん", email: "admin@admin.com", password: "123456", admin: true)
+
+# 一般ユーザーの作成
+normal_user = User.create(name: "ノーマルユーザー", email: "test@email.com", password: "123456")
+
+# 管理者ユーザーのゲストログイン用アカウントの作成
+admin_guest_user = User.create!(name: 'アドミンゲストユーザー',email: 'admin_guest@example.com',password: "123456",admin: true)
+
+# 一般ユーザーのゲストログイン用アカウントの作成
+normal_guest_user = User.create!(name: 'ノーマルゲストユーザー',email: 'normal_guest@example.com',password: "123456")
+
+# それぞれのユーザーのログイン用トークンを作成
+admin_user.generate_login_token
+normal_user.generate_login_token
+admin_guest_user.generate_login_token
+normal_guest_user.generate_login_token
+このseed.rbファイルを実行することで、管理者ユーザーと一般ユーザーの両方に、ゲストログイン用アカウントとログイン用トークンが作成されます。ゲストログイン用アカウントはランダムなパスワードを持ち、ログイン用トークンはログイン時に必要となります。
+
+
+
+
 
 
   User.create([
