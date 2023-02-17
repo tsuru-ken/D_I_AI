@@ -11,7 +11,6 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1 or /documents/1.json
   def show
-    @partner = Partner.find(params[:id])
   end
 
   # GET /documents/new
