@@ -25,7 +25,6 @@ $ cd DIA
 $ bundle
 $ rails db:create db:migrate
 $ rails db:seed
-$ rails r db/seeds/
 $ rails s
 ```
 
