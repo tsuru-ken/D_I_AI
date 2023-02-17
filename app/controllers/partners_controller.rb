@@ -67,7 +67,19 @@ class PartnersController < ApplicationController
   private
 
   def partner_params
-    params.require(:partner).permit(:name, :address, :url, :established, :service, :provision, :engineer, :product, :case, {cost_ids: []}, {service_content_ids: []}, {ai_category_ids: []}, product_infos_attributes: [:id, :name, :content, :image], case_studies_attributes: [:id, :name, :content, :image])
+    params.require(:partner).permit(:name,
+      :address,
+      :url,
+      :established,
+      :service,
+      :provision,
+      :engineer,
+      :product,
+      :case, {cost_ids: []},
+      {service_content_ids: []},
+      {ai_category_ids: []},
+      product_infos_attributes: [:id, :name, :content, :_destroy, :image, :image_cache],
+      case_studies_attributes: [:id, :name, :content, :_destroy, :image, :image_cache])
   end
 
   def set_partner

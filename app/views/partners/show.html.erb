@@ -29,18 +29,22 @@
 
 <h1>製品情報</h1>
 <% @partner.product_infos.each do |product_info| %>
-<%# <%binding.pry %> %>
-  <P>製品名<h2><%= product_info.name %></h2></P>
-  <p>製品説明: <%= product_info.content %></p>
-  <p>製品画像: <%= product_info.image %></p>
+  <%# <%binding.pry %> %>
+  <p>製品説明:<h2><%= product_info.name %></h2></p>
+  <p>製品説明URL:<%= raw Rinku.auto_link(h(product_info.content)) %></p>
+  <% if product_info.image.present? %>
+  <%= image_tag(product_info.image.url) %>
+<% end %>
 <% end %>
 
-<h1>製品情報</h1>
+<h1>導入事例</h1>
 <% @partner.case_studies.each do |case_study| %>
 <%# <%binding.pry %> %>
-  <P>製品名<h2><%= case_study.name %></h2></P>
-  <p>製品説明: <%= case_study.content %></p>
-  <p>製品画像: <%= case_study.image %></p>
+  <P>導入事例<h2><%= case_study.name %></h2></P>
+  <p>導入事例URL:<%=raw Rinku.auto_link(h(case_study.content)) %></p>
+  <% if case_study.image.present? %>
+  <%= image_tag(case_study.image.url) %>
+<% end %>
 <% end %>
 
 <%=link_to "会社一覧に戻る",partners_path%>
