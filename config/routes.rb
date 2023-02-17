@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root "home#index"
-  get "home/top", to: "home#top"
+  root "home#top"
+  
 
   # 検索機能関連
   resources :partners do

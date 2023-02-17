@@ -9,7 +9,7 @@ class PartnersController < ApplicationController
   end
 
   def show
-    @partner = Partner.find(params[:id])
+    @partner = Partner.eager_load(:product_infos, :case_studies).find(params[:id])
   end
 
   def new
