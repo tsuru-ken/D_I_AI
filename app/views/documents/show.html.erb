@@ -1,26 +1,26 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>タイトル:</strong>
   <%= @document.title %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>説明:</strong>
   <%= @document.description %>
 </p>
 
 <% if @document.document_image? %>
   <p>
-    <strong>Document Image:</strong><br />
+    <strong>画像:</strong><br />
     <%= image_tag @document.document_image.url, height: '500px' %>
   </p>
 
   <p>
   <%= form_with url: document_texts_path(@document.id), method: :get, local: false do |form| %>
-    <strong>Language:</strong>
-    English:<%= form.radio_button :Language, 'eng', checked: true %>
-    Japanese:<%= form.radio_button :Language, 'jpn' %>
+    <strong>言語選択:</strong>
+    英語:<%= form.radio_button :language, 'eng', checked: true %>
+    日本語:<%= form.radio_button :language, 'jpn' %>
     <br />
     <%= submit_tag "ライブラリのOCR実行"%>
     <% end %>
@@ -35,5 +35,6 @@
   </p>
 <% end %>
 
-<%= link_to 'Edit', edit_document_path(@document) %> |
-<%= link_to 'Back', documents_path %>
+<%= link_to '編集', edit_document_path(@document) %> |
+<%= link_to '戻る', documents_path %> |
+<%= link_to 'この結果からAI開発会社を探す', partners_path %>

@@ -1,0 +1,35 @@
+<h2 >マイページ</h2>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <div>
+      <p>名前 : <%= @user.name %></p>
+      <p>メールアドレス : <%= @user.email %></p>
+      <p><%= link_to "編集", edit_user_registration_path, class: "btn btn-outline-primary" if current_user == @user %></p>
+    </div>
+  </head>
+
+  <body>
+    <div>
+    <%= form_tag partners_path, method: :get, class: "form-group" do %>
+      <p>AI会社を探す</p>
+      <%= submit_tag "探す", class: "btn btn-primary" %>
+    <% end %>
+    </div>
+
+    <div>
+    <%= form_tag users_path, method: :get, class: "form-group" do %>
+      <p>AIを試す</p>
+      <%= submit_tag "試す", class: "btn btn-primary" %>
+    <% end %>
+    </div>
+
+    <div>
+    <%= form_tag documents_path, method: :get, class: "form-group" do %>
+      <p>AIの結果一覧</p>
+      <%= submit_tag "一覧", class: "btn btn-primary" %>
+    <% end %>
+    </div>
+  </body>
+</html>

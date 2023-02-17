@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <p class="notice"><%= notice %></p>
+
   <head>
     <title>DIAI</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -13,19 +13,51 @@
 
   <body>
     <% if user_signed_in? %>
-        <%= link_to "ブログ投稿", documents_path %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <p>
+        <%= current_user.name %>
+        <small>でログイン中</small>
+      </p>
+    <% end %>
+    <div>
+      <ul>
+        <li>
+          <%= link_to "トップ", root_path,
+            class: "nav-link" %>
+        </li>
+        <li>
+          <%= link_to "管理画面", rails_admin_path,
+          class: "nav-link" if current_user&.admin? %>
+        </li>
+        <li>
+          <%= link_to "AI選択", users_path,
+          class: "nav-link" %>
+        </li>
+        <li>
+          <%= link_to "AI会社検索", partners_path,
+          class: "nav-link" %>
+        </li>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to "マイページ", user_path(current_user),
+          class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログアウト", destroy_user_session_path,
+          class: "nav-link", method: :delete %>
+        </li>
       <% else %>
         <%= link_to "新規登録", new_user_registration_path %>
         <%= link_to "ログイン", new_user_session_path %>
       <% end %>
-      
+
       <% if notice %>
         <p class="alert alert-notice"><%= notice %></p>
       <% end %>
       <% if alert %>
         <p class="alert alert-error"><%= alert %></p>
       <% end %>
+
+     
 
     <%= yield %>
   </body>
