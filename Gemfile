@@ -81,3 +81,8 @@ gem 'ransack'
 
 # URLリンク機能
 gem 'rinku'
+
+
+gem 'net-smtp'
+gem 'net-imap'
+gem 'net-pop'
