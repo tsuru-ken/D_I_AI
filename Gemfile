@@ -68,6 +68,7 @@ gem 'carrierwave'
 gem 'google-cloud-vision'
 gem 'dotenv-rails'
 gem 'rtesseract'
+gem 'fog-aws'
 
 # ログイン関連
 gem 'devise'
