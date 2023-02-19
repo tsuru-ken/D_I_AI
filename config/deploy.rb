@@ -12,7 +12,7 @@ set :repo_url, 'https://github.com/tsuru-ken/D_I_AI'
 set :branch, ENV['BRANCH'] || 'main'
 
 # deploy先のディレクトリ。
-set :deploy_to, '/var/www/achieve'
+set :deploy_to, '/var/www/DIAI'
 
 # シンボリックリンクをはるフォルダ・ファイル
 set :linked_files, %w{.env config/secrets.yml}
