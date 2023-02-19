@@ -9,7 +9,7 @@ set :application, 'DIAI'
 set :repo_url, 'https://github.com/tsuru-ken/D_I_AI'
 
 # deployするブランチ。デフォルトでmainを使用している場合、masterをmainに変更してください。
-set :branch, ENV['BRANCH'] || 'master'
+set :branch, ENV['BRANCH'] || 'main'
 
 # deploy先のディレクトリ。
 set :deploy_to, '/var/www/achieve'
