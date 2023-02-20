@@ -11,13 +11,13 @@ admin_user.update(login_token: nil)
 
 
 # 一般ユーザーの作成
-normal_user = User.create(name: "ノーマルユーザー", email: "test@email.com", password: "123456")
+normal_user = User.create(name: "normal_user", email: "test@email.com", password: "123456")
 
 # 管理者ユーザーのゲストログイン用アカウントの作成
-admin_guest_user = User.create!(name: 'アドミンゲストユーザー',email: 'admin_guest@example.com',password: "123456",admin: true)
+admin_guest_user = User.create!(name: 'admin_guest_user',email: 'admin_guest@example.com',password: "123456",admin: true)
 
 # 一般ユーザーのゲストログイン用アカウントの作成
-normal_guest_user = User.create!(name: 'ノーマルゲストユーザー',email: 'normal_guest@example.com',password: "123456")
+normal_guest_user = User.create!(name: 'normal_guest_user',email: 'normal_guest@example.com',password: "123456")
 
 # それぞれのユーザーのログイン用トークンを作成
 admin_user.generate_login_token
