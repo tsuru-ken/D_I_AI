@@ -9,4 +9,11 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
+
+def generate_login_token
+    token = SecureRandom.hex(20)
+      self.update_attribute(:login_token, token)
+    token
+  end
 end
+
