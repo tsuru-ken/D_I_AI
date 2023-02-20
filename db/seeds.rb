@@ -8,7 +8,7 @@ admin_user = User.find_or_create_by(email: "admin@admin.com") do |u|
 end
 
 admin_user.update(login_token: nil)
-admin_user.generate_login_token
+
 
 # 一般ユーザーの作成
 normal_user = User.create(name: "ノーマルユーザー", email: "test@email.com", password: "123456")
@@ -24,7 +24,7 @@ admin_user.generate_login_token
 normal_user.generate_login_token
 admin_guest_user.generate_login_token
 normal_guest_user.generate_login_token
-このseed.rbファイルを実行することで、管理者ユーザーと一般ユーザーの両方に、ゲストログイン用アカウントとログイン用トークンが作成されます。ゲストログイン用アカウントはランダムなパスワードを持ち、ログイン用トークンはログイン時に必要となります。
+# このseed.rbファイルを実行することで、管理者ユーザーと一般ユーザーの両方に、ゲストログイン用アカウントとログイン用トークンが作成されます。ゲストログイン用アカウントはランダムなパスワードを持ち、ログイン用トークンはログイン時に必要となります。
 
 
 
@@ -292,88 +292,3 @@ CaseStudy.create!(
   image: File.open("./app/assets/images/システムズナカシマ2.png"),
   partner: partner
 )
-
-# partner2 = Partner.create!(
-#   name: '株式会社Preferred Networks',
-#   address: '東京都千代田区大手町1-6-1大手町ビル',
-#   url: 'https://www.preferred.jp/ja/',
-#   established: '2014年3月26日',
-#   service: "service1",
-#   engineer: "engineer1",
-#   provision: 100,
-#   product: "product1",
-#   case: "case1",
-#   user_id: user2.id)
-
-
-# partner4 = Partner.create!(
-#   name: '株式会社システムズナカシマ',
-#   address: '岡山市東区上道北方688-1',
-#   url: 'https://www.systems.nakashima.co.jp/',
-#   established: '昭和60年4月1日',
-#   service: "service1",
-#   engineer: "engineer1",
-#   provision: 100,
-#   product: "product1",
-#   case: "case1",
-#   user_id: user4.id)
-
-
-
-
-  # # ランダムなレコードを選択
-  # ai_category = AiCategory.order("RANDOM()").first
-  # cost = Cost.order("RANDOM()").first
-  # service_content = ServiceContent.order("RANDOM()").first
-
-  # # Partnerレコードを作成
-  # partner = Partner.create!(
-  #   name: "パートナー名",
-  #   address: "東京都港区1-1-1",
-  #   url: "https://example.com/",
-  #   established: "2020-01-01",
-  #   service: "サービス内容",
-  #   engineer: "エンジニア名",
-  #   provision: "クラウド",
-  #   product: "製品内容",
-  #   case: "事例内容",
-  #   user_id: 1
-  # )
-
-  # # PartnerAiCategoryLabelレコードを作成
-  # partner.partner_ai_category_labels.create!(
-  #   ai_category_id: ai_category.id
-  # )
-
-  # # PartnerCostLabelレコードを作成
-  # partner.partner_cost_labels.create!(
-  #   cost_id: cost.id
-  # )
-
-  # # PartnerServiceContentLabelレコードを作成
-  # partner.partner_service_content_labels.create!(
-  #   service_content_id: service_content.id
-  # )
-
-  # # ProductInfoレコードを作成
-  # partner.product_infos.create!(
-  #   name: "製品名",
-  #   content: "製品内容",
-  #   image: "https://example.com/image.jpg"
-  # )
-
-  # # CaseStudyレコードを作成
-  # partner.case_studies.create!(
-  #   name: "事例名",
-  #   content: "事例内容",
-  #   image: "https://example.com/image.jpg"
-  # )
-
-  # # ai_categoriesテーブルから適当なジャンルを取得
-# genre = AiCategory.pluck(:genre).sample
-
-# # costsテーブルから適当な項目を取得
-# breakdown = Cost.pluck(:breakdown).sample
-
-# # service_contentsテーブルから適当なdivisionを取得
-# division = ServiceContent.pluck(:division).sample
