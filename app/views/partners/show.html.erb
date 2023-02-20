@@ -29,14 +29,14 @@
 <% @partner.product_infos.each do |product_info| %>
   <p>製品名:<%= product_info.name %></p>
   <p>URL:<%= raw Rinku.auto_link(h(product_info.content)) %></p>
-  <%= image_tag(product_info.image.url, height: '300px') if product_info.image.present? %>
+  <%= image_tag(asset_path(product_info.image.url), height: '300px') if product_info.image.present? %>
 <% end %>
 
 <h1>導入事例</h1>
 <% @partner.case_studies.each do |case_study| %>
   <p><%= case_study.name %></p>
   <p>URL:<%=raw Rinku.auto_link(h(case_study.content)) %></p>
-  <%= image_tag(case_study.image.url, height: '300px') if case_study.image.present? %>
+  <%= image_tag(asset_path(case_study.image.url), height: '300px')  if case_study.image.present? %>
 <% end %>
 <div>
 <%=link_to "会社一覧に戻る",partners_path%>

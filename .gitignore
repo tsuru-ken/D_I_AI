@@ -35,6 +35,6 @@
 yarn-debug.log*
 .yarn-integrity
 
-
+#dotenv-rails
 .env
 google_cloud_key.json

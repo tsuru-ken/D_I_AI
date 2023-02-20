@@ -8,5 +8,12 @@ class User < ApplicationRecord
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
 
   devise :database_authenticatable, :registerable,
-        :recoverable, :rememberable, :validatable, :confirmable
+        :recoverable, :rememberable, :validatable
+
+def generate_login_token
+    token = SecureRandom.hex(20)
+      self.update_attribute(:login_token, token)
+    token
+  end
 end
+

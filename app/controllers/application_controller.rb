@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-  # OCR関連
-  require "google/cloud/vision/v1"
+
 
 
   # ログイン関連
@@ -13,3 +12,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 end
+
+# OCR関連
+require "google/cloud/vision/v1"

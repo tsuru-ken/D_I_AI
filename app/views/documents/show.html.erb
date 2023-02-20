@@ -13,7 +13,7 @@
 <% if @document.document_image? %>
   <p>
     <strong>画像:</strong><br />
-    <%= image_tag @document.document_image.url, height: '500px' %>
+    <%= image_tag(asset_path(@document.document_image.url, height: '500px')) %>
   </p>
 
   <p>

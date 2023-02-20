@@ -31,6 +31,14 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  gem 'capistrano', '3.16.0' # capistranoのツール一式
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :development do
@@ -68,6 +76,7 @@ gem 'carrierwave'
 gem 'google-cloud-vision'
 gem 'dotenv-rails'
 gem 'rtesseract'
+gem 'fog-aws'
 
 # ログイン関連
 gem 'devise'
@@ -81,3 +90,10 @@ gem 'ransack'
 
 # URLリンク機能
 gem 'rinku'
+
+
+gem 'net-smtp'
+gem 'net-imap'
+gem 'net-pop'
+
+gem 'unicorn'
