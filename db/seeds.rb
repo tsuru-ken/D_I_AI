@@ -1,8 +1,15 @@
 
 # Users
 # 管理者ユーザーの作成
-admin_user = User.create(name: "アドミンつるけん", email: "admin@admin.com", password: "123456", admin: true)
+admin_user = User.find_or_create_by(email: "admin@admin.com") do |u|
+  u.name = "アドミンつるけん"
+  u.password = "123456"
+  u.admin = true
+end
+
+admin_user.update(login_token: nil)
 admin_user.generate_login_token
+
 # 一般ユーザーの作成
 normal_user = User.create(name: "ノーマルユーザー", email: "test@email.com", password: "123456")
 
