@@ -78,7 +78,6 @@ class DocumentsController < ApplicationController
     image_url = "#{Rails.root}/public#{@document.document_image.url}"
     # S3の場合はそのままのURL
     # image = @document.document_image.url(query: { 'response-content-disposition' => 'attachment' })
-    
     image_annotator_client = Google::Cloud::Vision::V1::ImageAnnotator::Client.new
     response = image_annotator_client.document_text_detection(
       image: image_url, max_results: 1, image_context: { language_hints: %i[ja en] }

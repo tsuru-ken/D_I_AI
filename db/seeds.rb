@@ -78,7 +78,7 @@ user = User.first
     document_image: "./app/assets/images/sample5.png"
   )
 
-  
+
 # 100万以下から2000万以上までのCostsを作成
 Cost.create!(breakdown: "100万以下")
 Cost.create!(breakdown: "100~300万")
