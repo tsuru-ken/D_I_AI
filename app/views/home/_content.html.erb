@@ -1,29 +1,28 @@
-<% if current_user.try(:admin?) %>
-  <h1>DIA_admin</h1>
-<% else %>
-  <h1>DIA</h1>
-<% end %>
+<%# <% if current_user.try(:admin?) %>
+  <%# <h1>DIA_admin</h1> %>
+<%# <% else %> 
+  <%# <h1>DIA</h1> %>
+<%# <% end %> 
 
-  <div class="form-group">
-    <h2>このアプリはAIを手軽に試せる、AI会社を探せる。</h2>
+
+  <div class="form-group" style="text-align: center;  d-flex mt-3;">
+    <h2 class="my-3 fw-bold">このアプリはAIを手軽に試せる、AI会社を探せる。</h2>
     <h2>プラットフォームアプリになります。</h2>
-    <h4>世の中にAIを作れるアプリや、</h4>
     <h4>AIの開発には様々な問題点があります。</h4>
     <h4>このアプリではそれらを解決する糸口としてご利用いただけます。</h4>
-    <small class= > ※DIA = dive_into_AI</small>
   </div>
 
-  <div class="form-group">
+  <div class="form-group" style="text-align: center; mt-3;">
     <p>初めてご利用の方</p>
-    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
+    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-info px-3;" %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group" style="text-align: center;">
     <p>アカウントをお持ちの方</p>
-    <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
+    <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-info px-3;" %>
   </div>
 
-  <div class="form-group">
-    <p>すぐにAIを試してみたい方(ゲストログイン)</p>
-    <%= link_to "AIモデル一覧", users_path, class: "btn btn-primary" %>
+  <div class="form-group" style="text-align: center;">
+    <p>すぐにAIを試してみたい方</p>
+    <%= link_to "AIモデル一覧", users_path, class: "btn btn-outline-info px-3;" %>
   </div>

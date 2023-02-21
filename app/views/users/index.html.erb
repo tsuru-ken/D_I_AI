@@ -1,63 +1,70 @@
-<h2 >画像処理</h2>
-<div>
-  <%= form_tag documents_path, method: :get, class: "form-group" do %>
-    <p>文字認識    <%= submit_tag "試す", class: "btn btn-primary" %></p>
-  <% end %>
-</div>
-<div>
-  <%= form_tag documents_path, method: :get, class: "form-group" do %>
-    <p>画像分類    <%= link_to "試す", "#", class: "btn btn-primary", onclick: "alert('この機能は準備中です。')" %></p>
-  <% end %>
-</div>
-<div>
-  <%= form_tag documents_path, method: :get, class: "form-group" do %>
-    <p>物体検出    <%= link_to "試す", "#", class: "btn btn-primary", onclick: "alert('この機能は準備中です。')" %></p>
-  <% end %>
-</div>
-<div>
-  <%= form_tag documents_path, method: :get, class: "form-group" do %>
-    <p>GANの異常検知    <%= link_to "試す", "#", class: "btn btn-primary", onclick: "alert('この機能は準備中です。')" %></p>
-  <% end %>
+<div class="container;">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card" style="padding: 20px;">
+        <h4 style="text-align: center;">画像処理</h4>
+        <%= form_tag documents_path, method: :get, class: "form-group" do %>
+          <p style="text-align: center;">文字認識 <%= submit_tag "試す", class: "btn btn-outline-info" %></p>
+        <% end %>
+        <%= form_tag documents_path, method: :get, class: "form-group" do %>
+          <p style="text-align: center;">
+          画像分類 <%= button_tag "試す", class: "btn btn-outline-info", type: "button", onclick: "alert('この機能は準備中です。')" %>
+        <% end %>
+        <%= form_tag documents_path, method: :get, class: "form-group" do %>
+          <p style="text-align: center;">
+          物体検出 <%= button_tag "試す", class: "btn btn-outline-info", type: "button", onclick: "alert('この機能は準備中です。')" %>
+        <% end %>
+        <%= form_tag documents_path, method: :get, class: "form-group" do %>
+          <p style="text-align: center;">
+          GANの異常検知 <%= button_tag "試す", class: "btn btn-outline-info", type: "button", onclick: "alert('この機能は準備中です。')" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card" style="padding: 20px;">
+        <h4 style="text-align: center;">自然言語処理</h4>
+        <%= form_tag documents_path, method: :get, class: "form-group" do %>
+          <p style="text-align: center;">質問応答（１問１答）
+          <%= button_tag "試す", class: "btn btn-outline-info", type: "button", onclick: "alert('この機能は準備中です。')" %>
+        <% end %>
+        <%= form_tag documents_path, method: :get, class: "form-group" do %>
+          <p style="text-align: center;">質問応答（１問多答）
+          <%= button_tag "試す", class: "btn btn-outline-info", type: "button", onclick: "alert('この機能は準備中です。')" %>
+        <% end %>
+        <%= form_tag documents_path, method: :get, class: "form-group" do %>
+          <p style="text-align: center;">文章分類
+          <%= button_tag "試す", class: "btn btn-outline-info", type: "button", onclick: "alert('この機能は準備中です。')" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card" style="padding: 20px;">
+        <h4 style="text-align: center;">音声認識処理</h4>
+        <%= form_tag documents_path, method: :get, class: "form-group" do %>
+          <p style="text-align: center;">異音検知 
+          <%= button_tag "試す", class: "btn btn-outline-info", type: "button", onclick: "alert('この機能は準備中です。')" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card" style="padding: 20px;">
+        <h4 style="text-align: center;">時系列解析</h4>
+        <%= form_tag documents_path, method: :get, class: "form-group" do %>
+          <p style="text-align: center;">時系列異音検知
+          <%= button_tag "試す", class: "btn btn-outline-info", type: "button", onclick: "alert('この機能は準備中です。')" %>
+        <% end %>
+        <%= form_tag documents_path, method: :get, class: "form-group" do %>
+          <p style="text-align: center;">時系列クラスタリング
+          <%= button_tag "試す", class: "btn btn-outline-info", type: "button", onclick: "alert('この機能は準備中です。')" %>
+        <% end %>
+        <%= form_tag documents_path, method: :get, class: "form-group" do %>
+          <p style="text-align: center;">需要予測
+          <%= button_tag "試す", class: "btn btn-outline-info", type: "button", onclick: "alert('この機能は準備中です。')" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
-<h2 >自然言語処理</h2>
-<div>
-  <%= form_tag documents_path, method: :get, class: "form-group" do %>
-    <p>質問応答（１問１答）   <%= link_to "試す", "#", class: "btn btn-primary", onclick: "alert('この機能は準備中です。')" %></p>
-  <% end %>
-</div>
-<div>
-  <%= form_tag documents_path, method: :get, class: "form-group" do %>
-    <p>質問応答（１問多答）    <%= link_to "試す", "#", class: "btn btn-primary", onclick: "alert('この機能は準備中です。')" %></p>
-  <% end %>
-</div>
-<div>
-  <%= form_tag documents_path, method: :get, class: "form-group" do %>
-    <p>文章分類    <%= link_to "試す", "#", class: "btn btn-primary", onclick: "alert('この機能は準備中です。')" %></p>
-  <% end %>
-</div>
 
-<h2 >音声認識処理</h2>
-<div>
-  <%= form_tag documents_path, method: :get, class: "form-group" do %>
-    <p>異音検知    <%= link_to "試す", "#", class: "btn btn-primary", onclick: "alert('この機能は準備中です。')" %></p>
-  <% end %>
-</div>
-
-<h2 >時系列解析</h2>
-<div>
-  <%= form_tag documents_path, method: :get, class: "form-group" do %>
-    <p>時系列異音検知    <%= link_to "試す", "#", class: "btn btn-primary", onclick: "alert('この機能は準備中です。')" %></p>
-  <% end %>
-</div>
-<div>
-  <%= form_tag documents_path, method: :get, class: "form-group" do %>
-    <p>時系列クラスタリング    <%= link_to "試す", "#", class: "btn btn-primary", onclick: "alert('この機能は準備中です。')" %></p>
-  <% end %>
-</div>
-<div>
-  <%= form_tag documents_path, method: :get, class: "form-group" do %>
-    <p>需要予測    <%= link_to "試す", "#", class: "btn btn-primary", onclick: "alert('この機能は準備中です。')" %></p>
-  <% end %>
-</div>
 

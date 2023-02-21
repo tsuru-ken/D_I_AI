@@ -51,7 +51,7 @@ user = User.first
   document = user.documents.create!(
     title: '色々な日本語',
     description: '字体が違うものを文字認識',
-    document_image: "./app/assets/images/sample1.png"
+    document_image: ".app/assets/images/OCR_sample_image/sample1.png"
   )
   user = User.first
   document = user.documents.create!(
