@@ -1,79 +1,84 @@
-<h3>以下の内容で、送信する。</h3>
-<%= form_with(model: @partner, url: partners_path, local: true) do |form| %>
-
-  <%= form.hidden_field :name %>
-  <%= form.hidden_field :address %>
-  <%= form.hidden_field :url %>
-  <%= form.hidden_field :established %>
-  <%= form.hidden_field :service %>
-  <%= form.hidden_field :provision %>
-  <%# 提供サービス %>
-  <% @partner.service_contents.each do |service_content|%>
-    <%= form.hidden_field :service_content_ids , multiple: true, value: service_content.id %>
-  <% end %>
-  <%# AIカテゴリ %>
-  <% @partner.ai_categories.each do |ai_category|%>
-    <%= form.hidden_field :ai_category_ids , multiple: true, value: ai_category.id %>
-  <% end %>
-  <%# コスト感 %>
-  <% @partner.costs.each do |cost|%>
-    <%= form.hidden_field :cost_ids , multiple: true, value: cost.id %>
-  <% end %>
-  <%= form.hidden_field :engineer %>
-
-  <p>会社名: <%= @partner.name %></p>
-  <p>住所: <%= @partner.address %></p>
-  <p>会社URL: <%= @partner.url %></p>
-  <p>会社設立年: <%= @partner.established %></p>
-  <p>サービス概要: <%= @partner.service %></p>
-  <p>クラウド/オンプレミス: <%= @partner.provision %></p>
-  <%# 提供サービス %>
-  <p>提供サービス:
-    <% @partner.service_contents.each do |service_content| %>
-      <%= service_content.division %>
-    <% end %>
-  <p>
-  <%# AIカテゴリ %>
-  <p>AIカテゴリ:
-    <% @partner.ai_categories.each do |ai_category| %>
-      <%= ai_category.genre %>
-    <% end %>
-  <p>
-  <%# コスト感 %>
-  <p>コスト感:
-    <% @partner.costs.each do |cost| %>
-      <%= cost.breakdown %>
-    <% end %>
-  <p>
-  <p>技術者数: <%= @partner.engineer %></p>
-  <p>製品名: <%= @partner.product %></p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h3 class="mb-4">以下の内容で、送信する。</h3>
 
 
-<h1>製品情報</h1>
-<% @partner.product_infos.each do |product_info| %>
-  <%= form.fields_for :product_infos, product_info do |product_info_form| %>
-    <%= product_info_form.hidden_field :id %>
-    <p>製品説明<h2><%= product_info_form.text_area :name %></h2></p>
-    <p>製品説明URL: <%= product_info_form.text_field :content %></p>
+      <%= form_with(model: @partner, url: partners_path, local: true) do |form| %>
+        <%= form.hidden_field :name %>
+        <%= form.hidden_field :address %>
+        <%= form.hidden_field :url %>
+        <%= form.hidden_field :established %>
+        <%= form.hidden_field :service %>
+        <%= form.hidden_field :provision %>
+        <%# 提供サービス %>
+        <% @partner.service_contents.each do |service_content|%>
+          <%= form.hidden_field :service_content_ids , multiple: true, value: service_content.id %>
+        <% end %>
+        <%# AIカテゴリ %>
+        <% @partner.ai_categories.each do |ai_category|%>
+          <%= form.hidden_field :ai_category_ids , multiple: true, value: ai_category.id %>
+        <% end %>
+        <%# コスト感 %>
+        <% @partner.costs.each do |cost|%>
+          <%= form.hidden_field :cost_ids , multiple: true, value: cost.id %>
+        <% end %>
+        <%= form.hidden_field :engineer %>
 
-    <%= image_tag(product_info.image.url) if product_info.image.present? %>
-    <%= product_info_form.hidden_field :image_cache %>
-  <% end %>
-<% end %>
+        <p>会社名: <%= @partner.name %></p>
+        <p>住所: <%= @partner.address %></p>
+        <p>会社URL: <%= @partner.url %></p>
+        <p>会社設立年: <%= @partner.established %></p>
+        <p>サービス概要: <%= @partner.service %></p>
+        <p>クラウド/オンプレミス: <%= @partner.provision %></p>
+        <%# 提供サービス %>
+        <p>提供サービス:
+          <% @partner.service_contents.each do |service_content| %>
+            <%= service_content.division %>
+          <% end %>
+        <p>
+        <%# AIカテゴリ %>
+        <p>AIカテゴリ:
+          <% @partner.ai_categories.each do |ai_category| %>
+            <%= ai_category.genre %>
+          <% end %>
+        <p>
+        <%# コスト感 %>
+        <p>コスト感:
+          <% @partner.costs.each do |cost| %>
+            <%= cost.breakdown %>
+          <% end %>
+        <p>
+        <p>技術者数: <%= @partner.engineer %></p>
+        <p>製品名: <%= @partner.product %></p>
 
-<h1>導入事例</h1>
-<% @partner.case_studies.each do |case_study| %>
-  <%= form.fields_for :case_studies, case_study do |case_study_form| %>
-    <%= case_study_form.hidden_field :id %>
-    <p>導入事例説明:<h2><%= case_study_form.text_area :name %></h2></p>
-    <p>導入事例URL: <%= case_study_form.text_field :content %></p>
+      <h1>製品情報</h1>
+      <% @partner.product_infos.each do |product_info| %>
+        <%= form.fields_for :product_infos, product_info do |product_info_form| %>
+          <%= product_info_form.hidden_field :id %>
+          <p>製品説明<h2><%= product_info_form.text_area :name %></h2></p>
+          <p>製品説明URL: <%= product_info_form.text_field :content %></p>
 
-    <%= image_tag(case_study.image.url) if case_study.image.present? %>
-    <%= case_study_form.hidden_field :image_cache %>
-  <% end %>
-<% end %>
-  <p>
-  <%= form.submit  "登録する" %>
-  <%= form.submit "戻る", name: 'back' %>
-  </P>
+          <%= image_tag(product_info.image.url) if product_info.image.present? %>
+          <%= product_info_form.hidden_field :image_cache %>
+        <% end %>
+      <% end %>
+
+      <h1>導入事例</h1>
+      <% @partner.case_studies.each do |case_study| %>
+        <%= form.fields_for :case_studies, case_study do |case_study_form| %>
+          <%= case_study_form.hidden_field :id %>
+          <p>導入事例説明:<h2><%= case_study_form.text_area :name %></h2></p>
+          <p>導入事例URL: <%= case_study_form.text_field :content %></p>
+
+          <%= image_tag(case_study.image.url) if case_study.image.present? %>
+          <%= case_study_form.hidden_field :image_cache %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center mt-5">
+    <%= form.submit "登録する", class: "btn btn-primary mx-2" %>
+    <%= form.submit "戻る", name: 'back', class: "btn btn-secondary mx-2" %>
+  </div>
 <% end %>

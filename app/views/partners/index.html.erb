@@ -1,88 +1,125 @@
-<h1>会社一覧</h1>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-center mb-5">会社一覧</h1>
+    </div>
+  </div>
 
-<%= form_with url: partners_path, method: :get, local: true do |form| %>
-
-  <%= form.fields_for :q do |f| %>
-    <%= f.label :costs_id_eq_any, "コスト感" %>
-    <%= f.collection_select :costs_id_eq, Cost.all, :id, :breakdown, { include_blank: true } %>
-  <% end %>
-
-  <%= form.fields_for :q do |f| %>
-    <%= f.label :service_contents_id_eq_any, "提供サービス" %>
-    <%= f.collection_select :service_contents_id_eq, ServiceContent.all, :id, :division, { prompt: true } %>
-  <% end %>
-
-  <%= form.fields_for :q do |f| %>
-    <%= f.label :ai_categories_id_eq_any, "AIカテゴリー" %>
-    <%= f.collection_select :ai_categories_id_eq, AiCategory.all, :id, :genre, { prompt: true } %>
-  <% end %>
-
-  <%= form.fields_for :q do |f| %>
-  <%= f.label :name_cont, "会社名でキーワード検索" %>
-  <%= f.text_field :name_cont %>
-<% end %>
-
-  <%= form.submit "検索" %>
-
-<% end %>
-
-<table>
-  <tr>
-    <th>会社名</th>
-    <th>クラウド/オンプレミス</th>
-    <th>提供サービス</th>
-    <th>AIカテゴリ</th>
-    <th>コスト感</th>
-    <th>技術者数</th>
-    <th>製品情報</th>
-    <th>導入事例</th>
-    <th>詳細</th>
-    <% if current_user %>
-      <th>編集</th>
-      <th>削除</th>
+  <div class="row">
+    <%= form_with url: partners_path, method: :get, local: true do |form| %>
+      <div class="col-12 mb-4">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title mb-0 text-center">検索フォーム</h5>
+          </div>
+          <div class="card-body">
+            <%= form.fields_for :q do |f| %>
+              <div class="row">
+                <div class="col-sm-3 mb-3">
+                  <div>
+                    <%= f.label :costs_id_eq_any, "コスト感" %>
+                  </div>
+                  <div>
+                    <%= f.collection_select :costs_id_eq, Cost.all, :id, :breakdown, { include_blank: true }, { class: "form-select" } %>
+                  </div>
+                </div>
+                <div class="col-sm-3 mb-3">
+                  <%= f.label :service_contents_id_eq_any, "提供サービス" %>
+                  <%= f.collection_select :service_contents_id_eq, ServiceContent.all, :id, :division, { prompt: true }, { class: "form-select" } %>
+                </div>
+                <div class="col-sm-3 mb-3">
+                  <%= f.label :ai_categories_id_eq_any, "AIカテゴリー" %>
+                  <%= f.collection_select :ai_categories_id_eq, AiCategory.all, :id, :genre, { prompt: true }, { class: "form-select" } %>
+                </div>
+                <div class="col-sm-3 mb-3">
+                  <%= f.label :name_cont, "会社名でキーワード検索" %>
+                  <%= f.text_field :name_cont, { class: "form-control" } %>
+                </div>
+              </div>
+              <div class="text-center">
+                <%= form.submit "検索", { class: "btn btn-outline-info" } %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tr>
+  </div>
+</div>
 
-<% @partners.each do |partner| %>
-  <tr>
-    <td><%= link_to partner.name, partner_path(partner.id) %></td>
-    <td><%= partner.provision %></td>
-    <%# 提供サービス %>
-    <td>
-      <% partner.service_contents.each do |service_content| %>
-        <p>
-          <%= service_content.division %>
-        </p>
-      <% end %>
-    </td>
-    <%# AIカテゴリ %>
-    <td>
-      <% partner.ai_categories.each do |ai_category| %>
-        <p>
-          <%= ai_category.genre %>
-        </p>
-      <% end %>
-    </td>
-    <%# コスト感 %>
-    <td>
-      <% partner.costs.each do |cost| %>
-        <p>
-          <%= cost.breakdown %>
-        </p>
-      <% end %>
-    </td>
-    <td><%= partner.engineer %></td>
-    <td><%= partner.product %></td>
-    <td><%= partner.case %></td> 
-    <td><%= link_to '会社詳細画面', partner_path(partner.id) %></td>
-    <% if partner.user == current_user %>
-      <td><%= link_to "会社情報を編集する", edit_partner_path(partner.id) %></td>
-      <td><%= link_to '会社情報を削除する', partner_path(partner.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
-    <% else %>
-      <td></td>
-      <td></td>
-    <% end %>
-  </tr>
-<% end %>
-</table>
-<%= link_to '新しく会社を登録する', new_partner_path %>
+<div class="container">
+  <table class="table table-bordered table-hover align-middle text-center">
+    <thead class="table">
+      <tr>
+        <th>会社名</th>
+        <th>クラウド/オンプレミス</th>
+        <th>提供サービス</th>
+        <th>AIカテゴリ</th>
+        <th>コスト感</th>
+        <th>技術者数</th>
+        <%# <th>製品情報</th> %>
+        <%# <th>導入事例</th> %>
+        <th class="col-1">詳細</th>
+        <% if current_user %>
+          <th class="col-1">編集</th>
+          <th class="col-1">削除</th>
+        <% end %>
+      </tr>
+    </thead>
+    <div class="d-grid">
+      <%= link_to '新しく会社を登録する', new_partner_path, { class: "btn btn-outline-info mb-3" } %>
+    </div>
+    <tbody>
+      <% @partners.each do |partner| %>
+        <tr>
+          <td><%= link_to partner.name, partner_path(partner.id) %></td>
+          <td><%= partner.provision %></td>
+          <td>
+            <% partner.service_contents.each do |service_content| %>
+              <p>
+                <%= service_content.division %>
+              </p>
+            <% end %>
+          </td>
+          <td>
+            <% partner.ai_categories.each do |ai_category| %>
+              <p>
+                <%= ai_category.genre %>
+              </p>
+            <% end %>
+          </td>
+          <td>
+            <% partner.costs.each do |cost| %>
+              <p>
+                <%= cost.breakdown %>
+              </p>
+            <% end %>
+          </td>
+          <%# 技術者数 %>
+          <td><%= partner.engineer.present? ? partner.engineer : "" %></td>
+          <%# 製品情報 %>
+          <%# <td><%= partner.product.present? ? "○" : "" %>
+          <%# 導入事例 %>
+          <%# <td><%= partner.case.present? ? "○" : "" %>
+          <td><%= link_to '会社詳細画面', partner_path(partner.id) %></td>
+            <% if partner.user == current_user %>
+              <td><%= link_to "会社情報を編集する", edit_partner_path(partner.id) %></td>
+              <td><%= link_to '会社情報を削除する', partner_path(partner.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+            <% else %>
+              <td></td>
+              <td></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+      </table>
+        <div class="d-grid">
+          <%= link_to '新しく会社を登録する', new_partner_path, { class: "btn btn-outline-info mb-3" } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

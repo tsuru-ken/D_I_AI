@@ -6,24 +6,25 @@ admin_user = User.find_or_create_by(email: "admin@admin.com") do |u|
   u.password = "123456"
   u.admin = true
 end
-
 admin_user.update(login_token: nil)
-
 
 # 一般ユーザーの作成
 normal_user = User.create(name: "normal_user", email: "test@email.com", password: "123456")
 
 # 管理者ユーザーのゲストログイン用アカウントの作成
-admin_guest_user = User.create!(name: 'admin_guest_user',email: 'admin_guest@example.com',password: "123456",admin: true)
+admin_guest_user = User.find_or_create_by(email: 'admin_guest@example.com') do |u|
+  u.name = 'admin_guest_user'
+  u.password = '123456'
+  u.admin = true
+end
+admin_guest_user.update(login_token: nil)
 
 # 一般ユーザーのゲストログイン用アカウントの作成
-normal_guest_user = User.create!(name: 'normal_guest_user',email: 'normal_guest@example.com',password: "123456")
-
-# それぞれのユーザーのログイン用トークンを作成
-admin_user.generate_login_token
-normal_user.generate_login_token
-admin_guest_user.generate_login_token
-normal_guest_user.generate_login_token
+normal_guest_user = User.find_or_create_by(email: 'normal_guest@example.com') do |u|
+  u.name = 'normal_guest_user'
+  u.password = '123456'
+end
+normal_guest_user.update(login_token: nil)
 # このseed.rbファイルを実行することで、管理者ユーザーと一般ユーザーの両方に、ゲストログイン用アカウントとログイン用トークンが作成されます。ゲストログイン用アカウントはランダムなパスワードを持ち、ログイン用トークンはログイン時に必要となります。
 
 
@@ -50,7 +51,7 @@ user = User.first
   document = user.documents.create!(
     title: '色々な日本語',
     description: '字体が違うものを文字認識',
-    document_image: "./app/assets/images/sample1.png"
+    document_image: ".app/assets/images/OCR_sample_image/sample1.png"
   )
   user = User.first
   document = user.documents.create!(
