@@ -21,6 +21,12 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show, :index]
 
+  devise_scope :user do
+    post '/users/guest_sign_in', to: 'users/sessions#new_guest'
+    post '/users/guest_admin_sign_in', to: 'users/sessions#new_guest_admin'
+  end
+
+
   # OCR関連
   resources :documents do
     get 'texts', to: 'documents#execute_ocr'

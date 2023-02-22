@@ -10,10 +10,22 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
 
-def generate_login_token
-    token = SecureRandom.hex(20)
-      self.update_attribute(:login_token, token)
-    token
+  def self.guest_admin
+    find_or_create_by!(email: 'guest_admin@example.com') do |user|
+      user.name = 'ゲスト管理者'
+      user.password = SecureRandom.urlsafe_base64
+      user.password_confirmation = user.password
+      user.admin = true
+    end
+  end
+
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.name = 'ゲスト'
+      user.password = SecureRandom.urlsafe_base64
+      user.password_confirmation = user.password
+    end
   end
 end
 

@@ -1,64 +1,85 @@
 <!DOCTYPE html>
-<html>
 
+<html>
   <head>
     <title>DIAI</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <% if user_signed_in? %>
-      <p>
-        <%= current_user.name %>
-        <small>でログイン中</small>
-      </p>
-    <% end %>
     <div>
-      <ul>
-        <li>
-          <%= link_to "トップ", root_path,
-            class: "nav-link" %>
+      <ul style="display: flex; justify-content: flex-end; font-weight: bold;">
+        <li style="display: inline-block;">
+          <%= link_to "トップ", root_path, style: "margin-right: 10px;" %>
         </li>
-        <li>
-          <%= link_to "管理画面", rails_admin_path,
-          class: "nav-link" if current_user&.admin? %>
+        <li style="display: inline-block;">
+          <%= link_to "管理画面", rails_admin_path, style: "margin-right: 10px;" if current_user&.admin? %>
         </li>
-        <li>
-          <%= link_to "AI選択", users_path,
-          class: "nav-link" %>
+        <li style="display: inline-block;">
+          <%= link_to "AI選択", users_path, style: "margin-right: 10px;" %>
         </li>
-        <li>
-          <%= link_to "AI会社検索", partners_path,
-          class: "nav-link" %>
+        <li style="display: inline-block;">
+          <%= link_to "AI会社検索", partners_path, style: "margin-right: 10px;" %>
         </li>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "マイページ", user_path(current_user),
-          class: "nav-link" %>
+        <li style="display: inline-block;">
+          <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, style: "margin-right: 10px;" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "ログアウト", destroy_user_session_path,
-          class: "nav-link", method: :delete %>
+        <li style="display: inline-block;">
+          <%= link_to "ゲスト管理者ログイン", users_guest_admin_sign_in_path, method: :post, style: "margin-right: 10px;" %>
         </li>
-      <% else %>
-        <%= link_to "新規登録", new_user_registration_path %>
-        <%= link_to "ログイン", new_user_session_path %>
-      <% end %>
-
-      <% if notice %>
-        <p class="alert alert-notice"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-error"><%= alert %></p>
-      <% end %>
-
-     
-
+        <% if user_signed_in? %>
+          <li style="display: inline-block;">
+            <%= link_to "マイページ", user_path(current_user), style: "margin-right: 10px;" %>
+          </li>
+          <li style="display: inline-block;">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, style: "margin-right: 10px;" %>
+          </li>
+        <% else %>
+          <li style="display: inline-block;">
+            <%= link_to "新規登録", new_user_registration_path, style: "margin-right: 10px;" %>
+          </li>
+          <li style="display: inline-block;">
+            <%= link_to "ログイン", new_user_session_path, style: "margin-right: 10px;" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div style="display: flex; justify-content: center;">
+    <div class="texts-wrapper">
+      <div class="contents-title text-center">
+      <%= image_tag "rogo.png" , style: "width: 65%"%>
+      </div>
+      </div>
+    </div>
+    <% if notice %>
+      <p><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p><%= alert %></p>
+    <% end %>
     <%= yield %>
+    <footer style="background-color: rgb(2, 155, 197); text-align: center; padding: 10px;">
+      <small>© 2023, Tsuruken.</small>
+    </footer>
   </body>
 </html>
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  footer {
+    margin-top: auto;
+  }
+</style>

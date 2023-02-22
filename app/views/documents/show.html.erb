@@ -1,40 +1,47 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12 text-center">
+      <p> 作成されました。</p>
 
-<p>
-  <strong>タイトル:</strong>
-  <%= @document.title %>
-</p>
+      <p>
+        <strong>タイトル:</strong>
+        <%= @document.title %>
+      </p>
 
-<p>
-  <strong>説明:</strong>
-  <%= @document.description %>
-</p>
+      <p>
+        <strong>説明:</strong>
+        <%= @document.description %>
+      </p>
 
-<% if @document.document_image? %>
-  <p>
-    <strong>画像:</strong><br />
-    <%= image_tag(asset_path(@document.document_image.url, height: '500px')) %>
-  </p>
+      <% if @document.document_image? %>
+        <p>
+          <strong>画像:</strong><br />
+          <%# <%= image_tag(asset_path(@document.document_image.url, height: '500px')) %>
+          <%= image_tag @document.document_image.url, height: '300px' %>
+        </p>
 
-  <p>
-  <%= form_with url: document_texts_path(@document.id), method: :get, local: false do |form| %>
-    <strong>言語選択:</strong>
-    英語:<%= form.radio_button :language, 'eng', checked: true %>
-    日本語:<%= form.radio_button :language, 'jpn' %>
-    <br />
-    <%= submit_tag "ライブラリのOCR実行"%>
-    <% end %>
-    <div class="js-ocr-result"></div>
-    </p>
+        <p>
+          <%= form_with url: document_texts_path(@document.id), method: :get, local: false do |form| %>
+            <strong>言語選択:</strong>
+            英語:<%= form.radio_button :language, 'eng', checked: true %>
+            日本語:<%= form.radio_button :language, 'jpn' %>
+            <br />
+            <%= submit_tag "ライブラリのOCR実行", class: "btn btn-outline-info" %>
+          <% end %>
+          <div class="js-ocr-result"></div>
+        </p>
 
-    <p>
-    <%= form_with url: document_vision_texts_path(@document.id), method: :get, local: false do |form| %>
-      <%= submit_tag "Cloud VisionのOCR実行" %>
-    <% end %>
-    <div class="js-vision-result"></div>
-  </p>
-<% end %>
+        <p>
+          <%= form_with url: document_vision_texts_path(@document.id), method: :get, local: false do |form| %>
+            <%= submit_tag "Cloud VisionのOCR実行", class: "btn btn-outline-info" %>
+          <% end %>
+          <div class="js-vision-result"></div>
+        </p>
+      <% end %>
 
-<%= link_to '編集', edit_document_path(@document) %> |
-<%= link_to '戻る', documents_path %> |
-<%= link_to 'この結果からAI開発会社を探す', partners_path %>
+      <%= link_to '編集', edit_document_path(@document), class: "btn btn-outline-info" %> |
+      <%= link_to '戻る', documents_path, class: "btn btn-outline-info" %> |
+      <%= link_to 'この結果からAI開発会社を探す', partners_path, class: "btn btn-outline-info" %>
+    </div>
+  </div>
+</div>
