@@ -27,6 +27,10 @@ class DocumentImageUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+  def extension_whitelist
+    %w(jpg jpeg gif png)
+  end
+end
 
   # Create different versions of your uploaded files:
   # version :thumb do
@@ -44,4 +48,4 @@ class DocumentImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-end
+
