@@ -1,71 +1,59 @@
-<%# <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-8Nv+gPQ7Vw5hJ3q7+av5Z5Xf7mJSDpF+AAIAdPdRrl18M7tnBtpclzNWt0EhZCz9X+ogxUn0z3q8khvDk3FVOw==" crossorigin="anonymous" />
-  <!-- 他の head 要素 -->
-</head> %>
-
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">
       <div class="card">
-  <div class="card-body">
-    <h3 class="card-title">会社詳細</h3>
-    <h4 class="card-text">会社名: <%= @partner.name %></h4>
-    <p class="card-text">住所: <%= @partner.address %></p>
-    <p class="card-text">会社URL: <%=raw Rinku.auto_link(h(@partner.url)) %></p>
-    <p class="card-text">会社設立年: <%= @partner.established %></p>
-    <p class="card-text">サービス提供方法(クラウド/オンプレミス): <%= @partner.provision %></p>
-    <div class="card-text">
-      <h5 class="card-subtitle mb-2 text-muted">サービス概要</h5>
-      <h6><%= @partner.service %></h6>
+        <div class="card-body">
+          <h3 class="card-title">会社詳細</h3>
+          <h4 class="card-text">会社名: <%= @partner.name %></h4>
+          <p class="card-text">住所: <%= @partner.address %></p>
+          <p class="card-text">会社URL: <%=raw Rinku.auto_link(h(@partner.url)) %></p>
+          <p class="card-text">会社設立年: <%= @partner.established %></p>
+          <p class="card-text">サービス提供方法(クラウド/オンプレミス): <%= @partner.provision %></p>
+          <p class="card-text">技術者数: <%= @partner.engineer %></p>
+        <div class="card-text">
+          <h5 class="card-subtitle mb-2 text-muted">サービス概要</h5>
+          <h6><%= @partner.service %></h6>
+        </div>
+      </div>
     </div>
-    
-  </div>
-</div>
-      <div class="card">
-  <div class="card-body">
-    <h5 class="card-title">提供サービス</h5>
-    <ul class="list-group">
-      <% @partner.service_contents.pluck(:division).each do |service_content| %>
+    <div class="card">
+      <div class="card-body">
+      <h5 class="card-title">提供サービス</h5>
+      <ul class="list-group">
+        <% @partner.service_contents.pluck(:division).each do |service_content| %>
         <li class="list-group-item"><%= service_content %></li>
       <% end %>
-    </ul>
+      </ul>
+    </div>
   </div>
-</div>
-      <div class="card">
-  <div class="card-body">
-    <h5 class="card-title">AIカテゴリー</h5>
-    <ul class="list-group list-group-flush">
-      <% @partner.ai_categories.pluck(:genre).each_with_index do |ai_category, index| %>
-        <li class="list-group-item"><%= ai_category %></li>
-      <% end %>
-    </ul>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">AIカテゴリー</h5>
+      <ul class="list-group list-group-flush">
+        <% @partner.ai_categories.pluck(:genre).each_with_index do |ai_category, index| %>
+          <li class="list-group-item"><%= ai_category %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
-      <div class="card">
-  <div class="card-body">
-    <h5 class="card-title">コスト感</h5>
-    <ul class="list-group">
-      <% @partner.costs.pluck(:breakdown).each do |cost| %>
-        <li class="list-group-item"><%= cost %></li>
-      <% end %>
-    </ul>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">コスト感</h5>
+      <ul class="list-group">
+        <% @partner.costs.pluck(:breakdown).each do |cost| %>
+          <li class="list-group-item"><%= cost %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
-      <div class="card">
-  <div class="card-body">
-    <h5 class="card-title">技術者数</h5>
-    <p class="card-text"><%= @partner.engineer %></p>
-  </div>
-</div>
-
-      <div class="card">
+  <div class="card">
   <h3 class="card-title">製品情報</h3>
-  <div class="card-body">
-    <% @partner.product_infos.each do |product_info| %>
+    <div class="card-body">
+      <% @partner.product_infos.each do |product_info| %>
       <div class="card mb-3">
         <div class="card-body">
           <h6 class="card-title"><%= product_info.name %></h6>
-          <p class="card-text">URL: <%= raw Rinku.auto_link(h(product_info.content)) %></p>
+            <p class="card-text">URL: <%= raw Rinku.auto_link(h(product_info.content)) %></p>
           <% if product_info.image.present? %>
             <%= image_tag(asset_path(product_info.image.url), class: 'card-img-top', height: '300px', style: 'max-width: 400px;') %>
           <% end %>
@@ -73,15 +61,12 @@
       </div>
     <% end %>
   </div>
-</div>
-
-
-      <div class="card">
+  <div class="card">
   <h3 class="card-title">導入事例</h3>
-  <div class="card-body">
-    <% @partner.case_studies.each do |case_study| %>
-      <div class="card mb-3">
-        <div class="card-body">
+    <div class="card-body">
+      <% @partner.case_studies.each do |case_study| %>
+        <div class="card mb-3">
+          <div class="card-body">
           <h6 class="card-title"><%= case_study.name %></h6>
           <p class="card-text">URL: <%= raw Rinku.auto_link(h(case_study.content)) %></p>
           <% if case_study.image.present? %>

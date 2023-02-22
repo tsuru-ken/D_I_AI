@@ -2,140 +2,148 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-8">
-<%= form_with(model: @partner, local: true, url: choose_new_or_edit) do |form| %>
-  <% if @partner.errors.any? %>
-    <div class="alert alert-danger" id="error_explanation">
-      <h2><%= pluralize(@partner.errors.count, "error") %>があります。</h2>
-      <ul>
-        <% @partner.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+      <%= form_with(model: @partner, local: true, url: choose_new_or_edit) do |form| %>
+        <% if @partner.errors.any? %>
+          <div class="alert alert-danger" id="error_explanation">
+            <h2><%= pluralize(@partner.errors.count, "error") %>があります。</h2>
+            <ul>
+            <% @partner.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+        <div class="mb-3">
+          <%= form.label :name, "会社名", class: "form-label" %>
+          <%= form.text_field :name, class: "form-control", style: "width: 100%;" %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :address, "所在地", class: "form-label" %>
+          <%= form.text_field :address, class: "form-control", style: "width: 100%;" %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :url, "会社URL", class: "form-label" %>
+          <%= form.text_field :url, class: "form-control" , style: "width: 100%;" %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :established, "会社設立年", class: "form-label" %>
+          <%= form.text_field :established, class: "form-control" , style: "width: 100%;" %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :service, "サービス概要", class: "form-label" %>
+          <%= form.text_area :service, class: "form-control", style: "width: 100%;" %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :provision, "クラウド/オンプレミス", class: "form-label" %>
+          <%= form.select :provision, Partner.provisions.keys, { include_blank: "" }, class: "form-select" %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :service_content_ids, "提供サービス", class: "form-label" %>
+          <div class="form-check">
+            <%= form.collection_check_boxes(:service_content_ids, ServiceContent.all, :id, :division) do |b| %>
+              <div class="form-check">
+              <%= b.label class: "form-check-label" do %>
+                <%= b.check_box class: "form-check-input" %>
+                <%= b.text %>
+              <% end %>
+            </div>
+          <% end %>
+          </div>
+        </div>
+        <div class="mb-3">
+          <%= form.label :ai_category_ids, "AIカテゴリー", class: "form-label" %>
+          <div class="form-check">
+            <%= form.collection_check_boxes(:ai_category_ids, AiCategory.all, :id, :genre) do |b| %>
+              <div class="form-check">
+                <%= b.label class: "form-check-label" do %>
+                  <%= b.check_box class: "form-check-input" %>
+                  <%= b.text %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="mb-3">
+          <%= form.label :ai_category_ids, "AIカテゴリー", class: "form-label" %>
+          <div class="form-check">
+            <%= form.collection_check_boxes(:ai_category_ids, AiCategory.all, :id, :genre) do |b| %>
+              <div class="form-check">
+                <%= b.label class: "form-check-label" do %>
+                  <%= b.check_box class: "form-check-input" %>
+                  <%= b.text %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="mb-3">
+          <%= form.label :cost_ids, "コスト感", class: "form-label" %>
+          <div class="form-check">
+            <%= form.collection_check_boxes(:cost_ids, Cost.all, :id, :breakdown) do |b| %>
+              <div class="form-check">
+                <%= b.label class: "form-check-label" do %>
+                  <%= b.check_box class: "form-check-input" %>
+                  <%= b.text %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="mb-3">
+          <%= form.label :engineer, "技術者数", class: "form-label" %>
+          <%= form.text_field :engineer, class: "form-control" , style: "width: 100%;" %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :case, "導入事例", class: "form-label" %>
+          <%= form.text_field :case, class: "form-control " , style: "width: 100%;" %>
+        </div>
+        <div class="mb-3">
+          <%= form.fields_for :product_infos do |product_info_form| %>
+            <h5>製品事例</h5>
+            <div class="mb-3">
+              <%= product_info_form.label :name, "製品説明", class: "form-label" %>
+              <%= product_info_form.text_area :name, class: "form-control" , style: "width: 100%;" %>
+            </div>
+            <div class="mb-3">
+              <%= product_info_form.label :content, "製品事例URL", class: "form-label" %>
+              <%= product_info_form.text_field :content, class: "form-control"  , style: "width: 100%;"%>
+            </div>
+            <div class="mb-3">
+              <% if product_info_form.object.image.present? %>
+                <%= image_tag(product_info_form.object.image.url, height: '300px', style: 'max-width: 400px;') %>
+              <% end %>
+              <%= product_info_form.label :image, "製品事例画像", class: "form-label" %>
+              <%= product_info_form.file_field :image, class: "form-control", style: "width: 100%;" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="mb-3">
+          <%= form.fields_for :case_studies do |case_study_form| %>
+            <h5>導入事例</h5>
+            <div class="mb-3">
+              <%= case_study_form.label :name, "導入事例説明", class: "form-label" %>
+              <%= case_study_form.text_area :name, class: "form-control" , style: "width: 100%;" %>
+            </div>
+            <div class="mb-3">
+              <%= case_study_form.label :content, "導入事例URL", class: "form-label" %>
+              <%= case_study_form.text_field :content, class: "form-control", style: "width: 100%;"  %>
+            </div>
+            <div class="mb-3">
+              <% if case_study_form.object.image.present? %>
+                <%= image_tag(case_study_form.object.image.url, height: '300px', style: 'max-width: 400px;') %>
+              <% end %>
+              <%= case_study_form.label :image, "導入事例画像", class: "form-label" %>
+              <%= case_study_form.file_field :image, class: "form-control", style: "width: 100%;" %>
+            </div>
+          <% end %>
+          <div class="mb-3">
+            <%= form.submit "保存する", class: "btn btn-outline-info" %>
+            <%= link_to "会社一覧画面にもどる", partners_path, class: "btn btn-outline-info" %>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="mb-3">
-    <%= form.label :name, "会社名", class: "form-label" %>
-    <%= form.text_field :name, class: "form-control", style: "width: 100%;" %>
   </div>
-
-  <div class="mb-3">
-    <%= form.label :address, "所在地", class: "form-label" %>
-    <%= form.text_field :address, class: "form-control", style: "width: 100%;" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :url, "会社URL", class: "form-label" %>
-    <%= form.text_field :url, class: "form-control" , style: "width: 100%;" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :established, "会社設立年", class: "form-label" %>
-    <%= form.text_field :established, class: "form-control" , style: "width: 100%;" %>
-  </div>
-
-  <div class="mb-3">
-  <%= form.label :service, "サービス概要", class: "form-label" %>
-  <%= form.text_area :service, class: "form-control", style: "width: 100%;" %>
-</div>
-
-  <div class="mb-3">
-    <%= form.label :provision, "クラウド/オンプレミス", class: "form-label" %>
-    <%= form.select :provision, Partner.provisions.keys, { include_blank: "" }, class: "form-select" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :service_content_ids, "提供サービス", class: "form-label" %>
-    <div class="form-check">
-      <%= form.collection_check_boxes(:service_content_ids, ServiceContent.all, :id, :division) do |b| %>
-        <%= b.label(class: "form-check-label") { b.check_box(class: "form-check-input") + b.text } %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :ai_category_ids, "AIカテゴリー", class: "form-label" %>
-    <div class="form-check">
-      <%= form.collection_check_boxes(:ai_category_ids, AiCategory.all, :id, :genre) do |b| %>
-        <%= b.label(class: "form-check-label") { b.check_box(class: "form-check-input") + b.text } %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :cost_ids, "コスト感", class: "form-label" %>
-    <div class="form-check">
-      <%= form.collection_check_boxes(:cost_ids, Cost.all, :id, :breakdown) do |b| %>
-        <%= b.label(class: "form-check-label") { b.check_box(class: "form-check-input") + b.text } %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :engineer, "技術者数", class: "form-label" %>
-    <%= form.text_field :engineer, class: "form-control" , style: "width: 100%;" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :case, "導入事例", class: "form-label" %>
-    <%= form.text_field :case, class: "form-control " , style: "width: 100%;" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.fields_for :product_infos do |product_info_form| %>
-      <h5>製品事例</h5>
-      <div class="mb-3">
-        <%= product_info_form.label :name, "製品説明", class: "form-label" %>
-        <%= product_info_form.text_area :name, class: "form-control" , style: "width: 100%;" %>
-      </div>
-
-      <div class="mb-3">
-        <%= product_info_form.label :content, "製品事例URL", class: "form-label" %>
-        <%= product_info_form.text_field :content, class: "form-control"  , style: "width: 100%;"%>
-      </div>
-
-      <div class="mb-3">
-        <% if product_info_form.object.image.present? %>
-          <%= image_tag(product_info_form.object.image.url, height: '300px', style: 'max-width: 400px;') %>
-        <% end %>
-        <%= product_info_form.label :image, "製品事例画像", class: "form-label" %>
-        <%= product_info_form.file_field :image, class: "form-control", style: "width: 100%;" %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.fields_for :case_studies do |case_study_form| %>
-      <h5>導入事例</h5>
-      <div class="mb-3">
-        <%= case_study_form.label :name, "導入事例説明", class: "form-label" %>
-        <%= case_study_form.text_area :name, class: "form-control" , style: "width: 100%;" %>
-      </div>
-
-      <div class="mb-3">
-        <%= case_study_form.label :content, "導入事例URL", class: "form-label" %>
-        <%= case_study_form.text_field :content, class: "form-control", style: "width: 100%;"  %>
-      </div>
-
-      <div class="mb-3">
-  <% if case_study_form.object.image.present? %>
-    <%= image_tag(case_study_form.object.image.url, height: '300px', style: 'max-width: 400px;') %>
-  <% end %>
-  <%= case_study_form.label :image, "導入事例画像", class: "form-label" %>
-  <%= case_study_form.file_field :image, class: "form-control", style: "width: 100%;" %>
-</div>
-    <% end %>
-    <div class="mb-3">
-    <%= form.submit "保存する", class: "btn btn-outline-info" %>
-    <%= link_to "会社一覧画面にもどる", partners_path, class: "btn btn-outline-info" %>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-
-
-
 <% end %>
 
 
