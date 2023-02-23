@@ -32,7 +32,7 @@ Rails.application.configure do
   # config.assets.compile = false
   
   config.assets.compile = false
-  config.assets.compile = true
+  # config.assets.compile = true
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = 'http://assets.example.com'
