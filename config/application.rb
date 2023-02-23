@@ -15,8 +15,8 @@ module DIAI
 
     # config/application.rb
 
-config.autoload_paths += %W(#{config.root}/lib)
-
+  config.autoload_paths += %W(#{config.root}/lib)
+  config.autoload_paths += %W(#{config.root}/config/initializers)
 
 
     # Configruration for the application, engines, and railties goes here.
