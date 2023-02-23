@@ -13,6 +13,11 @@ module DIAI
 
     config.i18n.default_locale = :ja
 
+    # config/application.rb
+
+config.autoload_paths += %W(#{config.root}/lib)
+
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
