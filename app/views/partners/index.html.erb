@@ -20,7 +20,7 @@
                     <%= f.label :costs_id_eq_any, "コスト感" %>
                   </div>
                   <div>
-                    <%= f.collection_select :costs_id_eq, Cost.all, :id, :breakdown, { include_blank: true }, { class: "form-select" } %>
+                    <%= f.collection_select :costs_id_eq, Cost.all, :id, :breakdown, { prompt: "選択してください" }, { class: "form-select" } %>
                   </div>
                 </div>
                 <div class="col-sm-3 mb-3">
@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-sm-3 mb-3">
                   <%= f.label :name_cont, "会社名でキーワード検索" %>
-                  <%= f.text_field :name_cont, { class: "form-control" } %>
+                  <%= f.text_field :name_cont, { class: "form-control", placeholder: "キーワードを入力してください" } %>
                 </div>
               </div>
               <div class="text-center">
