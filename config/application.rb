@@ -1,4 +1,4 @@
-require_relative "boot"
+equire_relative "boot"
 require 'dotenv/load'
 require "rails/all"
 
@@ -18,7 +18,8 @@ module DIAI
 config.autoload_paths += %W(#{config.root}/lib)
 
 
-    # Configuration for the application, engines, and railties goes here.
+
+    # Configruration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
