@@ -69,11 +69,12 @@
         <% @partner.case_studies.each do |case_study| %>
           <div class="card mb-3">
             <div class="card-body">
-            <h6 class="card-title"><%= case_study.name %></h6>
-            <p class="card-text">URL: <%= raw Rinku.auto_link(h(case_study.content)) %></p>
-            <% if case_study.image.present? %>
-              <%= image_tag(asset_path(case_study.image.url), class: 'card-img-top', height: '300px', style: 'max-width: 400px;') %>
-            <% end %>
+              <h6 class="card-title"><%= product_info.name %></h6>
+              <p class="card-text">URL: <%= raw Rinku.auto_link(h(product_info.content)) %></p>
+              <% if product_info.image.present? %>
+                <%= image_tag(asset_path(product_info.image.url), class: 'card-img-top', height: '300px', style: 'max-width: 400px;') %>
+              <% end %>
+            </div>
           </div>
         </div>
       <% end %>
