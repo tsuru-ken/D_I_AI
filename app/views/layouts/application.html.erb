@@ -34,7 +34,7 @@
       <li style="display: inline-block;">
         <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, style: "margin-right: 10px;" %>
       </li>
-      <% if current_user&.admin? %>
+      <% if %>
         <li style="display: inline-block;">
           <%= link_to "ゲスト管理者ログイン", users_guest_admin_sign_in_path, method: :post, style: "margin-right: 10px;" %>
         </li>
