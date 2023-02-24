@@ -180,7 +180,7 @@ ProductInfo.create!(
 CaseStudy.create!(
   name: 'セントラル警備保障様 自律移動型警備ロボット向けAI物体検出システム開発',
   content: 'https://prtimes.jp/main/html/rd/p/000000015.000027037.html',
-  image: File.open("./app/assets/images/Global Walkers2.png"),
+  image: File.open(Rails.root.join("app/assets/images/Global Walkers2.png")),
   partner: partner
 )
 
