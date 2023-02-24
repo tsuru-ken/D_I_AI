@@ -25,11 +25,7 @@ Rails.application.routes.draw do
     post '/users/guest_sign_in', to: 'users/sessions#new_guest'
     post '/users/guest_admin_sign_in', to: 'users/sessions#new_guest_admin'
   end
-  devise_for :admins, controllers: {
-    sessions: 'admin/sessions'
-  }
-
-
+  
 
   # OCR関連
   resources :documents do
