@@ -15,12 +15,20 @@ class Users::SessionsController < Devise::SessionsController
     sign_out(resource_name)
     redirect_to root_path
   end
-end
 
-def admin_user?
-  if current_user && current_user.admin?
-    true
-  else
-    redirect_to(root_url)
+  private
+
+  def guest_admin_user?
+    if current_user && current_user.admin?
+      true
+    else
+      redirect_to(root_url)
+    end
+  end
+
+  def authenticate_user!
+    if !guest_admin_user?
+      super
+    end
   end
 end
