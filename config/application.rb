@@ -28,3 +28,11 @@ module DIAI
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+
+module DIAI
+  class Application < Rails::Application
+    # ...
+    # PATHを設定
+    ENV['PATH'] = "#{ENV['PATH']}:/home/app/tesseract/bin:/usr/bin"
+  end
+end
