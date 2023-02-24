@@ -25,10 +25,5 @@ class Users::SessionsController < Devise::SessionsController
       redirect_to(root_url)
     end
   end
-
-  def authenticate_user!
-    if !guest_admin_user?
-      super
-    end
-  end
 end
+
