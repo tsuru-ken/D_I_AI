@@ -68,20 +68,10 @@ class DocumentsController < ApplicationController
     # image_url = "#{Rails.root}/public#{@document.document_image.url}"
 
     # S3の場合はそそままのURL
-    # image_url = @document.document_image.url
-
-    # S3の場合はそそままのURL（修正）
-    @document = Document.find(params[:document_id])
-    s3 = Aws::S3::Client.new
-    obj = s3.get_object(bucket: 'your-bucket-name', key: @document.document_image.path)
-    image_path = "#{Rails.root}/tmp/#{SecureRandom.hex}"
-    File.open(image_path, 'wb') do |file|
-      file.write(obj.body.read)
-    end
-    image = RTesseract.new(image_path, lang: params[:language])
+    image_url = @document.document_image.url
+    image = RTesseract.new(image_url, lang: params[:language])
     @text = image.to_s.gsub(/(\r\n|\r|\n)/, '\\n')
     @text = 'テキストが検出できませんでした' if @text.blank?
-    File.delete(image_path)
   end
 
   def execute_vision_api
