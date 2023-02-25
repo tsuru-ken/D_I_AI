@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-lg-8">
+    <div class="col-lg-12">
       <%= form_with(model: @partner, local: true, url: choose_new_or_edit) do |form| %>
         <% if @partner.errors.any? %>
           <div class="alert alert-danger" id="error_explanation">
@@ -15,28 +15,29 @@
         <% end %>
         <div class="mb-3">
           <%= form.label :name, "会社名", class: "form-label" %>
-          <%= form.text_field :name, class: "form-control", style: "width: 100%;" %>
+          <%= form.text_field :name, class: "form-control", style: "width: 100%;", placeholder: "会社名を入力してください" %>
         </div>
         <div class="mb-3">
           <%= form.label :address, "所在地", class: "form-label" %>
-          <%= form.text_field :address, class: "form-control", style: "width: 100%;" %>
+          <%= form.text_field :address, class: "form-control", style: "width: 100%;", placeholder: "所在地を入力してください" %>
         </div>
         <div class="mb-3">
           <%= form.label :url, "会社URL", class: "form-label" %>
-          <%= form.text_field :url, class: "form-control" , style: "width: 100%;" %>
+          <%= form.text_field :url, class: "form-control", style: "width: 100%;", placeholder: "会社URLを入力してください" %>
         </div>
         <div class="mb-3">
           <%= form.label :established, "会社設立年", class: "form-label" %>
-          <%= form.text_field :established, class: "form-control" , style: "width: 100%;" %>
+          <%= form.text_field :established, class: "form-control", style: "width: 100%;", placeholder: "会社設立年を入力してください" %>
         </div>
         <div class="mb-3">
           <%= form.label :service, "サービス概要", class: "form-label" %>
-          <%= form.text_area :service, class: "form-control", style: "width: 100%;" %>
+          <%= form.text_area :service, class: "form-control", style: "width: 100%;", placeholder: "サービス概要を入力してください" %>
         </div>
         <div class="mb-3">
           <%= form.label :provision, "クラウド/オンプレミス", class: "form-label" %>
           <%= form.select :provision, Partner.provisions.keys, { include_blank: "" }, class: "form-select" %>
         </div>
+
         <div class="mb-3">
           <%= form.label :service_content_ids, "提供サービス", class: "form-label" %>
           <div class="form-check">
@@ -92,22 +93,22 @@
         </div>
         <div class="mb-3">
           <%= form.label :engineer, "技術者数", class: "form-label" %>
-          <%= form.text_field :engineer, class: "form-control" , style: "width: 100%;" %>
+          <%= form.text_field :engineer, class: "form-control" , style: "width: 100%;", placeholder: "技術者数を入力してください" %>
         </div>
         <div class="mb-3">
           <%= form.label :case, "導入事例", class: "form-label" %>
-          <%= form.text_field :case, class: "form-control " , style: "width: 100%;" %>
+          <%= form.text_field :case, class: "form-control" , style: "width: 100%;", placeholder: "導入事例を入力してください" %>
         </div>
         <div class="mb-3">
           <%= form.fields_for :product_infos do |product_info_form| %>
             <h5>製品事例</h5>
             <div class="mb-3">
               <%= product_info_form.label :name, "製品説明", class: "form-label" %>
-              <%= product_info_form.text_area :name, class: "form-control" , style: "width: 100%;" %>
+              <%= product_info_form.text_area :name, class: "form-control" , style: "width: 100%;", placeholder: "製品説明を入力してください" %>
             </div>
             <div class="mb-3">
               <%= product_info_form.label :content, "製品事例URL", class: "form-label" %>
-              <%= product_info_form.text_field :content, class: "form-control"  , style: "width: 100%;"%>
+              <%= product_info_form.text_field :content, class: "form-control", style: "width: 100%;", placeholder: "製品事例URLを入力してください" %>
             </div>
             <div class="mb-3">
               <% if product_info_form.object.image.present? %>
@@ -123,11 +124,11 @@
             <h5>導入事例</h5>
             <div class="mb-3">
               <%= case_study_form.label :name, "導入事例説明", class: "form-label" %>
-              <%= case_study_form.text_area :name, class: "form-control" , style: "width: 100%;" %>
+              <%= case_study_form.text_area :name, class: "form-control", style: "width: 100%;", placeholder: "導入事例の説明を入力してください" %>
             </div>
             <div class="mb-3">
               <%= case_study_form.label :content, "導入事例URL", class: "form-label" %>
-              <%= case_study_form.text_field :content, class: "form-control", style: "width: 100%;"  %>
+              <%= case_study_form.text_field :content, class: "form-control", style: "width: 100%;", placeholder: "導入事例のURLを入力してください" %>
             </div>
             <div class="mb-3">
               <% if case_study_form.object.image.present? %>

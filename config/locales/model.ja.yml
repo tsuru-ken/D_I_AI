@@ -3,6 +3,16 @@ ja:
     models:
       blog: ブログ
       user: ユーザー
+      ai_category: "AIサービス"
+      case_study: "導入事例"
+      cost: "コスト感"
+      document: "画像"
+      partner: "AIパートナー"
+      partner_ai_category_label: "パートナーAIカテゴリーラベル"
+      partner_cost_label: "パートナーコストラベル"
+      partner_service_content_label: "パートナーサービスコンテントラベル"
+      product_info: "製品情報"
+      service_content: "提供サービス"
     attributes:
       blog:
         title: タイトル
