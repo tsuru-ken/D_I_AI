@@ -16,14 +16,5 @@ class Users::SessionsController < Devise::SessionsController
     redirect_to root_path
   end
 
-  private
-
-  def guest_admin_user?
-    if current_user && current_user.admin?
-      true
-    else
-      redirect_to(root_url)
-    end
-  end
-end
+  
 
