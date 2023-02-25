@@ -51,33 +51,33 @@ user = User.first
   document = user.documents.create!(
     title: '色々な日本語',
     description: '字体が違うものを文字認識',
-    document_image: ".app/assets/images/OCR_sample_image/sample1.png"
+    document_image:File.open("app/assets/images/OCR_sample_image/sample1.png")
   )
   user = User.first
   document = user.documents.create!(
     title: 'カタカナ',
     description: '字体が違うカタカナ文字認識',
-    document_image: "./app/assets/images/sample2.png"
+    document_image:File.open("app/assets/images/OCR_sample_image/sample2.png")
   )
 
   user = User.first
   document = user.documents.create!(
     title: 'チェリー本',
     description: 'みんなの思い出がたくさん詰まったチェリー本',
-    document_image: "./app/assets/images/sample3.png"
+    document_image:File.open("app/assets/images/OCR_sample_image/sample3.png")
   )
   user = User.first
   document = user.documents.create!(
     title: '英語',
     description: '字体が違う英語',
-    document_image: "./app/assets/images/sample4.png"
+    document_image: File.open("app/assets/images/OCR_sample_image/sample4.png")
   )
-  user = User.first
-  document = user.documents.create!(
-    title: 'レシート',
-    description: 'たまご高騰',
-    document_image: "./app/assets/images/sample5.png"
-  )
+  # user = User.first
+  # document = user.documents.create!(
+  #   title: 'レシート',
+  #   description: 'たまご高騰',
+  #   document_image:File.open("app/assets/images/sample5.png")
+  # )
 
 
 # 100万以下から2000万以上までのCostsを作成
@@ -180,7 +180,7 @@ ProductInfo.create!(
 CaseStudy.create!(
   name: 'セントラル警備保障様 自律移動型警備ロボット向けAI物体検出システム開発',
   content: 'https://prtimes.jp/main/html/rd/p/000000015.000027037.html',
-  image: File.open("./app/assets/images/Global Walkers2.png"),
+  image: File.open(Rails.root.join("app/assets/images/Global Walkers2.png")),
   partner: partner
 )
 

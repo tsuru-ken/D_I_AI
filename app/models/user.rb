@@ -27,5 +27,12 @@ class User < ApplicationRecord
       user.password_confirmation = user.password
     end
   end
+  
+  def guest?
+    email == 'guest@example.com'
+  end
 end
+
+  
+
 

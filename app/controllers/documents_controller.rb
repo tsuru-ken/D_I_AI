@@ -1,7 +1,8 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+   before_action :authenticate_user!
+  
 
 
   # GET /documents or /documents.json
@@ -25,7 +26,8 @@ class DocumentsController < ApplicationController
   # POST /documents or /documents.json
   def create
     @document = Document.new(document_params)
-
+    @document.user = current_user
+  
     respond_to do |format|
       if @document.save
         format.html { redirect_to document_url(@document) }
@@ -65,10 +67,10 @@ class DocumentsController < ApplicationController
   def execute_ocr
     @document = Document.find(params[:document_id])
     # ローカル保存用
-    image_url = "#{Rails.root}/public#{@document.document_image.url}"
+    # image_url = "#{Rails.root}/public#{@document.document_image.url}"
 
     # S3の場合はそそままのURL
-    # image_url = @document.document_image.url
+    image_url = @document.document_image.url
     image = RTesseract.new(image_url, lang: params[:language])
     @text = image.to_s.gsub(/(\r\n|\r|\n)/, '\\n')
     @text = 'テキストが検出できませんでした' if @text.blank?
@@ -77,12 +79,12 @@ class DocumentsController < ApplicationController
   def execute_vision_api
     @document = Document.find(params[:document_id])
     # ローカルに保存している場合はこっち
-    image_url = "#{Rails.root}/public#{@document.document_image.url}"
+    # image_url = "#{Rails.root}/public#{@document.document_image.url}"
     # S3の場合はそのままのURL
-    # image = @document.document_image.url(query: { 'response-content-disposition' => 'attachment' })
+    image = @document.document_image.url(query: { 'response-content-disposition' => 'attachment' })
     image_annotator_client = Google::Cloud::Vision::V1::ImageAnnotator::Client.new
     response = image_annotator_client.document_text_detection(
-      image: image_url, max_results: 1, image_context: { language_hints: %i[ja en] }
+      image: image, max_results: 1, image_context: { language_hints: %i[ja en] }
     )
     @vision_text = ''
     response.responses.each do |res|

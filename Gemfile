@@ -39,6 +39,12 @@ group :development, :test do
   gem 'capistrano3-unicorn'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
+
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+
+  
+
 end
 
 group :development do
@@ -60,9 +66,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver', '>= 4.0.0.rc1'
-  # Easy installation and use of web drivers to run system tests with browsers
+  gem 'capybara', '>= 2.15'
   gem 'webdrivers'
 end
 
@@ -99,5 +103,8 @@ gem 'net-pop'
 gem 'unicorn'
 
 
-gem 'bootstrap', '~> 4.1.1'
-gem 'jquery-rails'
+
+
+gem 'aws-sdk'
+
+gem 'concurrent-ruby', '~> 1.1.9'
