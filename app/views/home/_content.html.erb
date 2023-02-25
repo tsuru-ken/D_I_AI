@@ -8,9 +8,21 @@
         <h6>AIの開発には様々な問題点があります。</h6>
         <h6>このアプリではそれらを解決する糸口としてご利用いただけます。</h6>
       </div>
-
-      
->>
+      <div class="form-group text-center mt-3">
+        <p>初めてご利用の方</p>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-info px-3" %>
+      </div>
+      <div class="form-group text-center">
+        <p>アカウントをお持ちの方</p>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-info px-3" %>
+      </div>
+      <div class="form-group text-center">
+        <p>すぐにAIを試してみたい方</p>
+      <%= link_to "AIモデル一覧", users_path, class: "btn btn-outline-info px-3" %>
+      </div>
+      <div class="form-group text-center">
+        <p>すぐにAI開発会社を探してみたい方</p>
+        <%= link_to "AI開発会社一覧", partners_path, class: "btn btn-outline-info px-3" %>
       </div>
     </div>
   </div>
