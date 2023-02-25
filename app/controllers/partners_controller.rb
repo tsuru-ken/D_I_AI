@@ -1,7 +1,6 @@
 class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
-  # before_action :authenticate_user!
-  #  before_action :set_current_user
+  before_action :authenticate_user!
 
   def index
     @search = Partner.ransack(params[:q])
@@ -57,7 +56,7 @@ class PartnersController < ApplicationController
   end
 
   def confirm
-    @partner = @current_user.partners.build(partner_params)
+    @partner = current_user.partners.build(partner_params)
     @costs = Cost.all
     @service_contents = ServiceContent.all
     @ai_categories = AiCategory.all
@@ -81,6 +80,8 @@ class PartnersController < ApplicationController
       product_infos_attributes: [:id, :name, :content, :_destroy, :image, :image_cache],
       case_studies_attributes: [:id, :name, :content, :_destroy, :image, :image_cache])
   end
+
+
 
   def set_partner
     @partner = Partner.find(params[:id])

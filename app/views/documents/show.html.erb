@@ -1,47 +1,59 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-12 text-center">
-      <p> 作成されました。</p>
+    <div class="col-md-10 col-lg-8">
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-6">
+            <div class="d-flex align-items-center justify-content-center h-100">
+              <%= image_tag @document.document_image.url, class: "img-fluid document-image" %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card-body">
+              <h6 class="card-title">タイトル: <%= @document.title %></h6>
+              <p class="card-text">説明: <%= @document.description %></p>
+              <% if @document.document_image? %>
+                <div class="mb-3">
+                  <%= form_with url: document_texts_path(@document.id), method: :get, local: false do |form| %>
+                    <div class="form-group">
+                      <%= form.label :language, "<strong>言語選択:</strong>".html_safe %>
+                      <%= form.select :language, { "jpn": "日本語", "eng": "英語" }, { selected: "jpn", class: "form-control" } %>
+                    </div>
+                  <% end %>
+                  <div class="js-ocr-result"></div>
+                </div>
 
-      <p>
-        <strong>タイトル:</strong>
-        <%= @document.title %>
-      </p>
+                <div class="mb-3">
+                  <%= form_with url: document_vision_texts_path(@document.id), method: :get, local: false do |form| %>
+                    <%= form.submit "AI-OCRを試す", class: "btn btn-outline-info" %>
+                  <% end %>
+                  <div class="js-vision-result" style="font-size: 1.4em;"></div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <p>
-        <strong>説明:</strong>
-        <%= @document.description %>
-      </p>
-
-      <% if @document.document_image? %>
-        <p>
-          <strong>画像:</strong><br />
-          <%# <%= image_tag(asset_path(@document.document_image.url, height: '500px')) %>
-          <%= image_tag @document.document_image.url, height: '300px' %>
-        </p>
-
-        <p>
-          <%= form_with url: document_texts_path(@document.id), method: :get, local: false do |form| %>
-            <strong>言語選択:</strong>
-            英語:<%= form.radio_button :language, 'eng', checked: true %>
-            日本語:<%= form.radio_button :language, 'jpn' %>
-            <br />
-            <%= submit_tag "ライブラリのOCR実行", class: "btn btn-outline-info" %>
-          <% end %>
-          <div class="js-ocr-result"></div>
-        </p>
-
-        <p>
-          <%= form_with url: document_vision_texts_path(@document.id), method: :get, local: false do |form| %>
-            <%= submit_tag "Cloud VisionのOCR実行", class: "btn btn-outline-info" %>
-          <% end %>
-          <div class="js-vision-result"></div>
-        </p>
-      <% end %>
-
-      <%= link_to '編集', edit_document_path(@document), class: "btn btn-outline-info" %> |
-      <%= link_to '戻る', documents_path, class: "btn btn-outline-info" %> |
-      <%= link_to 'この結果からAI開発会社を探す', partners_path, class: "btn btn-outline-info" %>
+      <div class="d-grid gap-2 d-md-flex justify-content-end mb-3">
+        <%= link_to '編集', edit_document_path(@document), class: "btn btn-outline-secondary me-md-2" %>
+        <%= link_to '戻る', documents_path, class: "btn btn-outline-secondary" %>
+      </div>
+      <div class="text-center">
+        <%= link_to 'この結果からAI開発会社を探す', partners_path, class: "btn btn-outline-info" %>
+      </div>
     </div>
   </div>
 </div>
+
+<style>
+  .document-image {
+    height: 450px;
+    object-fit: contain;
+  }
+</style>
+
+
+
+
+<%# <%= form.submit "ライブラリのOCR実行", class: "btn btn-primary" %> 

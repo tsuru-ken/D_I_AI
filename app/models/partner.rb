@@ -24,4 +24,12 @@ class Partner < ApplicationRecord
   enum provision: { 'クラウド': 0, 'オンプレミス': 1, 'その他': 2 }
 
   # scope :sort_name, -> {order(name: :DESC)}
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "address", "url", "established"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["ai_categories", "case_studies", "costs", "service_contents"]
+  end
 end

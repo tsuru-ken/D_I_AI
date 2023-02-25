@@ -14,50 +14,43 @@
   </head>
   <body>
     <div>
-  <ul style="display: flex; justify-content: flex-end; font-weight: bold;">
-    <li style="display: inline-block;">
-      <%= link_to "トップ", root_path, style: "margin-right: 10px;" %>
-    <% if current_user&.admin? %>
-      <li style="display: inline-block;">
-        <%= link_to "管理画面", rails_admin_path, style: "margin-right: 10px;" %>
-      </li>
-    <% end %>
-    <li style="display: inline-block;">
-      <%= link_to "AI選択", users_path, style: "margin-right: 10px;" %>
-    </li>
-    <li style="display: inline-block;">
-      <%= link_to "AI会社検索", partners_path, style: "margin-right: 10px;" %>
-    </li>
-    <% if current_user&.guest? %>
-      <%# ゲストログインとゲスト管理者ログインのリンクを非表示にする %>
-    <% else %>
-      <li style="display: inline-block;">
-        <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, style: "margin-right: 10px;" %>
-      </li>
-      <% if %>
+      <ul style="display: flex; justify-content: flex-end; font-weight: bold;">
+        <li style="display: inline-block;">
+          <%= link_to "トップ", root_path, style: "margin-right: 10px;" %>
+        <% if current_user&.admin? %>
+          <li style="display: inline-block;">
+            <%= link_to "管理画面", rails_admin_path, style: "margin-right: 10px;" %>
+          </li>
+        <% end %>
+        <li style="display: inline-block;">
+          <%= link_to "AI選択", users_path, style: "margin-right: 10px;" %>
+        </li>
+        <li style="display: inline-block;">
+          <%= link_to "AI会社検索", partners_path, style: "margin-right: 10px;" %>
+        </li>
+        <li style="display: inline-block;">
+          <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, style: "margin-right: 10px;" %>
+        </li>
         <li style="display: inline-block;">
           <%= link_to "ゲスト管理者ログイン", users_guest_admin_sign_in_path, method: :post, style: "margin-right: 10px;" %>
         </li>
-      <% end %>
-    <% end %>
-    <% if user_signed_in? %>
-      <li style="display: inline-block;">
-        <%= link_to "マイページ", user_path(current_user), style: "margin-right: 10px;" %>
-      </li>
-      <li style="display: inline-block;">
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, style: "margin-right: 10px;" %>
-      </li>
-    <% else %>
-      <li style="display: inline-block;">
-        <%= link_to "新規登録", new_user_registration_path, style: "margin-right: 10px;" %>
-      </li>
-      <li style="display: inline-block;">
-        <%= link_to "ログイン", new_user_session_path, style: "margin-right: 10px;" %>
-      </li>
-    <% end %>
-  </ul>
-</div>
-
+        <% if user_signed_in? %>
+          <li style="display: inline-block;">
+            <%= link_to "マイページ", user_path(current_user), style: "margin-right: 10px;" %>
+          </li>
+          <li style="display: inline-block;">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, style: "margin-right: 10px;" %>
+          </li>
+        <% else %>
+          <li style="display: inline-block;">
+            <%= link_to "新規登録", new_user_registration_path, style: "margin-right: 10px;" %>
+          </li>
+          <li style="display: inline-block;">
+            <%= link_to "ログイン", new_user_session_path, style: "margin-right: 10px;" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
     <div style="display: flex; justify-content: center;">
     <div class="texts-wrapper">
       <div class="contents-title text-center">

@@ -12,8 +12,10 @@
             <th scope="col">タイトル</th>
             <th scope="col">説明</th>
             <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <% if current_user && !current_user.guest? %>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            <% end %>
           </tr>
         </thead>
         <tbody>
@@ -22,8 +24,13 @@
               <td><%= document.title %></td>
               <td><%= document.description %></td>
               <td><%= link_to '詳細', document, class: "btn btn-outline-info text-grey" %></td>
-              <td><%= link_to '編集', edit_document_path(document), class: "btn btn-outline-info text-grey" %></td>
-              <td><%= link_to '削除', document, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info text-grey" %></td>
+              <% if current_user && (document.user == current_user || current_user.admin? )%>
+                <td><%= link_to '編集', edit_document_path(document), class: "btn btn-outline-info text-grey" %></td>
+                <td><%= link_to '削除', document, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info text-grey" %></td>
+              <% else %>
+                <td></td>
+                <td></td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>
@@ -35,6 +42,8 @@
     </div>
   </div>
 </div>
+
+
 
 
 

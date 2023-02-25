@@ -1,7 +1,8 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: %i[ show edit update destroy ]
-  # before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
-  # before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+   before_action :authenticate_user!
+  
 
 
   # GET /documents or /documents.json
@@ -25,7 +26,8 @@ class DocumentsController < ApplicationController
   # POST /documents or /documents.json
   def create
     @document = Document.new(document_params)
-
+    @document.user = current_user
+  
     respond_to do |format|
       if @document.save
         format.html { redirect_to document_url(@document) }
