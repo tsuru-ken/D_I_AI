@@ -1846,7 +1846,7 @@ DEPENDENCIES
   ransack
   rexml
   rinku
-  rspec-rails (~> 3.8)
+  rspec-rails
   rtesseract
   sass-rails (>= 6)
   spring

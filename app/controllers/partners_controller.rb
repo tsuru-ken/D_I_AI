@@ -3,9 +3,10 @@ class PartnersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @search = Partner.ransack(params[:q])
-    @partners = @search.result
+    @q = Partner.ransack(params[:q])
+    @partners = @q.result(distinct: true)
   end
+  
 
   def show
     @partner = Partner.eager_load(:product_infos, :case_studies).find(params[:id])
