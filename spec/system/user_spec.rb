@@ -47,9 +47,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
         fill_in 'user[email]', with: 'mistue@example.com'
         fill_in 'user[password]', with: 'password'
         click_on 'commit'
-        # expect(page).not_to have_content '一覧'
         expect(page).to have_content '管理画面'
-        # expect(page).to have_link '管理画面', href: '/admin'
       end
     end
 
