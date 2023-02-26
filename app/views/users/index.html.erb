@@ -4,7 +4,7 @@
       <div class="card" style="padding: 20px;">
         <h4 style="text-align: center;">画像処理</h4>
         <%= form_tag documents_path, method: :get, class: "form-group" do %>
-          <p style="text-align: center;">文字認識 <%= submit_tag "試す", class: "btn btn-outline-info" %></p>
+          <p style="text-align: center;">文字認識 <%= submit_tag "試す", class: "btn btn-outline-info", id:"search_btn_1" %></p>
         <% end %>
         <%= form_tag documents_path, method: :get, class: "form-group" do %>
           <p style="text-align: center;">

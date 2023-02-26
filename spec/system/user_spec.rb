@@ -16,5 +16,55 @@ RSpec.describe 'ユーザー管理機能', type: :system do
         expect(page).to have_content 'アカウント登録が完了しました。'
       end
     end
+
+    context '正しいパスワードが入力された場合' do
+      it 'ログインできること' do
+        visit new_user_session_path
+        fill_in 'user[email]', with: 'takayuki@example.com'
+        fill_in 'user[password]', with: 'password'
+        click_on 'commit'
+        #binding.pry
+        expect(page).not_to have_content 'takayuki'
+        expect(page).to have_content '違います'
+      end
+    end
+
+    context '誤ったパスワードが入力された場合' do
+      it 'ログインできないこと' do
+        visit new_user_session_path
+        fill_in 'user[email]', with: 'example@example.com'
+        fill_in 'user[password]', with: 'pass'
+        click_on 'commit'
+        expect(page).not_to have_content 'takayuki'
+        expect(page).to have_content '違います'
+      end
+    end
+    context '管理者権限を持ったユーザーログインした場合' do
+      it '管理者画面のリンクが出て管理者画面に行く' do
+        user = FactoryBot.create(:third_user)
+        visit new_user_session_path
+        fill_in 'user[name]', with: 'mitsue'
+        fill_in 'user[email]', with: 'mistue@example.com'
+        fill_in 'user[password]', with: 'password'
+        click_on 'commit'
+        # expect(page).not_to have_content '一覧'
+        expect(page).to have_content '管理画面'
+        # expect(page).to have_link '管理画面', href: '/admin'
+      end
+    end
+
+    context 'ログアウトテスト' do
+      it 'ユーザーがログアウトする' do
+        user = FactoryBot.create(:third_user)
+        visit new_user_session_path
+        fill_in 'user[name]', with: 'mitsue'
+        fill_in 'user[email]', with: 'mistue@example.com'
+        fill_in 'user[password]', with: 'password'
+        click_on 'commit'
+        sleep (1)
+        click_on 'ログアウト'
+        expect(page).to have_content 'ログアウトしました。'
+      end
+    end
   end
 end

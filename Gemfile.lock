@@ -1509,6 +1509,8 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    faker (3.1.0)
+      i18n (>= 1.8.11, < 2)
     faraday (2.7.4)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
@@ -1761,6 +1763,8 @@ GEM
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
     spring (4.1.1)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -1836,9 +1840,11 @@ DEPENDENCIES
   dotenv-rails
   ed25519
   factory_bot_rails
+  faker
   fog-aws
   google-cloud-vision
   jbuilder (~> 2.7)
+  launchy
   letter_opener_web
   listen (~> 3.3)
   net-imap
@@ -1857,6 +1863,7 @@ DEPENDENCIES
   rtesseract
   sass-rails (>= 6)
   spring
+  spring-commands-rspec
   turbolinks (~> 5)
   tzinfo-data
   unicorn

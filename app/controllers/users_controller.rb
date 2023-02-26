@@ -12,8 +12,11 @@ class UsersController < ApplicationController
   private
 
   def admin_user?
-    return if current_user.admin? || params[:id] == 'sign_out'
-    redirect_to root_path, alert: "他のユーザーページにはアクセスできません。"
+    if current_user.id == params[:id].to_i || current_user.admin?
+      return
+    else
+      redirect_to root_path, alert: "他のユーザーページにはアクセスできません。"
+    end
   end
 end
 
