@@ -5,8 +5,9 @@
         <div class="row g-0">
           <div class="col-md-6">
             <div class="d-flex align-items-center justify-content-center h-100">
-              <%= image_tag @document.document_image.url, class: "img-fluid document-image" %>
-              
+              <% if @document.document_image.present? %>
+                <%= image_tag @document.document_image.url, class: "img-fluid document-image" %>
+              <% end %>
             </div>
           </div>
           <div class="col-md-6">
