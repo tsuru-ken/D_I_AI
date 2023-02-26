@@ -59,11 +59,24 @@ div.actions {
 
 #error_explanation ul li {
   font-size: 12px;
-  list-style: square; }
+  list-style: none; }
 
 label {
   display: block; }
 
 a {
     color: grey;
+  }
+
+  #error_explanation {
+
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+  }
+  
+  #error_explanation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
