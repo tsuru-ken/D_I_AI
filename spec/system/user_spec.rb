@@ -9,7 +9,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       it '新規登録するとマイページに遷移する' do
         visit new_user_registration_path
         fill_in 'user[name]', with: 'テスト'
-        fill_in 'user[email]', with: 'test@example.com'
+        fill_in 'user[email]', with: 'mitsue@example.com'
         fill_in 'user[password]', with: '123456'
         fill_in 'user[password_confirmation]', with: '123456'
         click_on 'commit'
@@ -32,7 +32,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
     context '誤ったパスワードが入力された場合' do
       it 'ログインできないこと' do
         visit new_user_session_path
-        fill_in 'user[email]', with: 'example@example.com'
+        fill_in 'user[email]', with: 'takayuki@example.com'
         fill_in 'user[password]', with: 'pass'
         click_on 'commit'
         expect(page).not_to have_content 'takayuki'
@@ -41,10 +41,10 @@ RSpec.describe 'ユーザー管理機能', type: :system do
     end
     context '管理者権限を持ったユーザーログインした場合' do
       it '管理者画面のリンクが出て管理者画面に行く' do
-        user = FactoryBot.create(:third_user)
+        user ||= FactoryBot.create(:third_user, email: "takayuki@example.com")
         visit new_user_session_path
         fill_in 'user[name]', with: 'mitsue'
-        fill_in 'user[email]', with: 'mistue@example.com'
+        fill_in 'user[email]', with: 'takayuki@example.com'
         fill_in 'user[password]', with: 'password'
         click_on 'commit'
         expect(page).to have_content '管理画面'
@@ -53,10 +53,10 @@ RSpec.describe 'ユーザー管理機能', type: :system do
 
     context 'ログアウトテスト' do
       it 'ユーザーがログアウトする' do
-        user = FactoryBot.create(:third_user)
+        user ||= FactoryBot.create(:third_user, email: "takayuki@example.com")
         visit new_user_session_path
         fill_in 'user[name]', with: 'mitsue'
-        fill_in 'user[email]', with: 'mistue@example.com'
+        fill_in 'user[email]', with: 'takayuki@example.com'
         fill_in 'user[password]', with: 'password'
         click_on 'commit'
         sleep (1)

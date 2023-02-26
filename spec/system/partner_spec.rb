@@ -5,7 +5,7 @@ RSpec.describe Document, type: :system do
   def login
     visit new_user_session_path
     fill_in 'user[name]', with: 'mitsue'
-    fill_in 'user[email]', with: 'mistue@example.com'
+    fill_in 'user[email]', with: ' mistue@example.com'
     fill_in 'user[password]', with: 'password'
     click_on 'commit'
   end
