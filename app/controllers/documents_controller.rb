@@ -12,6 +12,8 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1 or /documents/1.json
   def show
+    @document = Document.find(params[:id])
+    # send_file_headers! # 追加する
   end
 
   # GET /documents/new
