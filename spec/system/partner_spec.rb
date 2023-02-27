@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Partner, type: :system do
 
-  let!(:user) { FactoryBot.create(:secound_user)}
-      def login
-        visit new_user_session_path
-        fill_in 'user[name]', with: 'takayuki'
-        fill_in 'user[email]', with: 'takayuki@example.com'
-        fill_in 'user[password]', with: 'password'
-        click_on 'commit'
-      end
+let!(:user) { FactoryBot.create(:secound_user)}
+  def login
+    visit new_user_session_path
+    fill_in 'user[name]', with: 'takayuki'
+    fill_in 'user[email]', with: 'takayuki@example.com'
+    fill_in 'user[password]', with: 'password'
+    click_on 'commit'
+  end
 
   describe '会社情報の登録機能' do
     context '会社情報が正常に登録された場合' do

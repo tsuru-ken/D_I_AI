@@ -2,15 +2,16 @@ require 'rails_helper'
 
 RSpec.describe Document, type: :system do
 
+let!(:user) { FactoryBot.create(:secound_user)}
+  def login
+    visit new_user_session_path
+    fill_in 'user[name]', with: 'takayuki'
+    fill_in 'user[email]', with: 'takayuki@example.com'
+    fill_in 'user[password]', with: 'password'
+    click_on 'commit'
+  end
+
   describe 'ドキュメントの投稿機能' do
-    let!(:user) { FactoryBot.create(:secound_user)}
-      def login
-        visit new_user_session_path
-        fill_in 'user[name]', with: 'takayuki'
-        fill_in 'user[email]', with: 'takayuki@example.com'
-        fill_in 'user[password]', with: 'password'
-        click_on 'commit'
-      end
     context 'ドキュメントが正常にアップロードされた場合' do
       it 'AIを試す画面に移動できる' do
         login
