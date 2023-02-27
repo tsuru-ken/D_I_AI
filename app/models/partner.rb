@@ -16,10 +16,10 @@ class Partner < ApplicationRecord
   has_many :case_studies, dependent: :destroy
   accepts_nested_attributes_for :case_studies
 
-  validates :name, presence: true
-  validates :address, presence: true
-  validates :url, presence: true
-  validates :established, presence: true
+  validates :name, presence: true, length: { maximum: 255 }
+  validates :address, presence: true, length: { maximum: 255 }
+  validates :url, presence: true, length: { maximum: 255 }
+  validates :established, presence: true, length: { maximum: 50 }
 
   enum provision: { 'クラウド': 0, 'オンプレミス': 1, 'その他': 2 }
 

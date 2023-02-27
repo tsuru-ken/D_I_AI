@@ -6,7 +6,7 @@ class PartnersController < ApplicationController
     if current_user.admin?
       @partners = Partner.all
     else
-      @partners = Partner.all # ここを変更する
+      @partners = Partner.all
     end
   end
 

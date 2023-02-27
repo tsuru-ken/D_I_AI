@@ -20,8 +20,8 @@
 下記ターミナルで実行
 
 ```
-$ git clone git@github.com:tsuru-ken/DIVE_INTO_AI.git
-$ cd DIA
+$ git clone git@github.com:tsuru-ken/D_I_AI.git
+$ cd DIAI
 $ bundle
 $ rails db:create db:migrate
 $ rails db:seed

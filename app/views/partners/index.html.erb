@@ -57,8 +57,6 @@
         <th>AIカテゴリ</th>
         <th>コスト感</th>
         <th>技術者数</th>
-        <%# <th>製品情報</th> %>
-        <%# <th>導入事例</th> %>
         <th class="col-1">詳細</th>
         <% if current_user %>
           <th class="col-1">編集</th>
@@ -95,12 +93,7 @@
               </p>
             <% end %>
           </td>
-          <%# 技術者数 %>
           <td><%= partner.engineer.present? ? partner.engineer : "" %></td>
-          <%# 製品情報 %>
-          <%# <td><%= partner.product.present? ? "○" : "" %>
-          <%# 導入事例 %>
-          <%# <td><%= partner.case.present? ? "○" : "" %>
           <td><%= link_to '会社詳細画面', partner_path(partner.id) %></td>
             <% if current_user && (partner.user == current_user || current_user.admin? )%>
           <td><%= link_to "会社情報を編集する", edit_partner_path(partner.id) %></td>
