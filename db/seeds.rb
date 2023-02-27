@@ -72,12 +72,12 @@ user = User.first
     description: '字体が違う英語',
     document_image: File.open("app/assets/images/OCR_sample_image/sample4.png")
   )
-  # user = User.first
-  # document = user.documents.create!(
-  #   title: 'レシート',
-  #   description: 'たまご高騰',
-  #   document_image:File.open("app/assets/images/sample5.png")
-  # )
+  user = User.first
+  document = user.documents.create!(
+    title: 'レシート',
+    description: 'たまご高騰',
+    document_image:File.open("app/assets/images/sample5.png")
+  )
 
 
 # 100万以下から2000万以上までのCostsを作成
