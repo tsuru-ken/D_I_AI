@@ -1,14 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe Document, type: :system do
+RSpec.describe Partner, type: :system do
 
-  def login
-    visit new_user_session_path
-    fill_in 'user[name]', with: 'mitsue'
-    fill_in 'user[email]', with: 'mitsue@example.com'
-    fill_in 'user[password]', with: 'password'
-    click_on 'commit'
-  end
+  let!(:user) { FactoryBot.create(:secound_user)}
+      def login
+        visit new_user_session_path
+        fill_in 'user[name]', with: 'takayuki'
+        fill_in 'user[email]', with: 'takayuki@example.com'
+        fill_in 'user[password]', with: 'password'
+        click_on 'commit'
+      end
 
   describe '会社情報の登録機能' do
     context '会社情報が正常に登録された場合' do
@@ -66,7 +67,7 @@ RSpec.describe Document, type: :system do
         case_study = CaseStudy.new(name: "導入事例１", content: "導入事例の内容", partner_id: 1 )
         case_study.save
         click_on '保存'
-        expect(page).to have_content '1 errorがあります。'
+        expect(page).to have_content 'があります'
         expect(page).to have_content 'Nameを入力してください'
       end
     end

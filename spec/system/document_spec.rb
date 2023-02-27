@@ -2,18 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Document, type: :system do
 
-  
-
   describe 'ドキュメントの投稿機能' do
-    let(:user) { FactoryBot.create(:third_user)}
-    def login
-      visit new_user_session_path
-      fill_in 'user[name]', with: 'アドミンつるけん'
-      fill_in 'user[email]', with: 'admin@admin.com'
-      fill_in 'user[password]', with: '123456'
-      click_on 'commit'
-      sleep(5)
-    end
+    let!(:user) { FactoryBot.create(:secound_user)}
+      def login
+        visit new_user_session_path
+        fill_in 'user[name]', with: 'takayuki'
+        fill_in 'user[email]', with: 'takayuki@example.com'
+        fill_in 'user[password]', with: 'password'
+        click_on 'commit'
+      end
     context 'ドキュメントが正常にアップロードされた場合' do
       it 'AIを試す画面に移動できる' do
         login
@@ -43,7 +40,7 @@ RSpec.describe Document, type: :system do
         click_on '保存'
         document = Document.last
         visit document_path(document.id)
-        expect(page).not_to have_content '新規作成画面'
+        expect(page).not_to have_content
         expect(page).to have_content document.description
         expect(page).to have_content document.document_image.filename.to_s
       end

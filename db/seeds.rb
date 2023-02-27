@@ -30,8 +30,6 @@ normal_guest_user.update(login_token: nil)
 
 
 
-
-
   User.create([
     { name: "つるだ", email: "test1@email.com", password: "123456" },
     { name: "古谷", email: "test2@email.com", password: "123456" },
@@ -103,7 +101,6 @@ AiCategory.create!(genre: "自然言語処理")
 AiCategory.create!(genre: "音声認識処理")
 AiCategory.create!(genre: "時系列解析")
 AiCategory.create!(genre: "最適化処理")
-
 
 
 breakdowns = ["100万以下", "100~300万", "300~500万", "500~2000万", "2000万以上"]
