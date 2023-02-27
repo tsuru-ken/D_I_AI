@@ -15,9 +15,9 @@ FactoryBot.define do
     admin { false }
   end
   factory :third_user, class:User do
-    name { "mitsue" }
-    email { "mistue@example.com" }
-    password { "password" }
+    name { "アドミンつるけん" }
+    email { "admin@admin.com" }
+    password { "123456" }
     # profile { "三恵プロフィール" }
     admin { true }
   end
