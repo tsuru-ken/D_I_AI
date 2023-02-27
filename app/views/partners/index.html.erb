@@ -103,8 +103,8 @@
           <%# <td><%= partner.case.present? ? "○" : "" %>
           <td><%= link_to '会社詳細画面', partner_path(partner.id) %></td>
             <% if current_user && (partner.user == current_user || current_user.admin? )%>
-              <td><%= link_to "会社情報を編集する", edit_partner_path(partner.id) %></td>
-              <td><%= link_to '会社情報を削除する', partner_path(partner.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+          <td><%= link_to "会社情報を編集する", edit_partner_path(partner.id) %></td>
+          <td><%= link_to '会社情報を削除する', partner_path(partner.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
             <% else %>
               <td></td>
               <td></td>

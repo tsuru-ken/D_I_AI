@@ -38,7 +38,9 @@
       </div>
 
       <div class="d-grid gap-2 d-md-flex justify-content-end mb-3">
-        <%= link_to '編集', edit_document_path(@document), class: "btn btn-outline-secondary me-md-2" %>
+        <% if current_user && (@document.user == current_user || current_user.admin?) %>
+          <%= link_to '編集', edit_document_path(@document), class: "btn btn-outline-secondary me-md-2" %>
+        <% end %>
         <%= link_to '戻る', documents_path, class: "btn btn-outline-secondary" %>
       </div>
       <div class="text-center">

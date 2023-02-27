@@ -43,7 +43,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    -
+    - 
     - 1月
     - 2月
     - 3月
@@ -196,73 +196,73 @@ ja:
               blank: "を入力してください"
             document_image:
               blank: "を選択してください"
-  ja:
-  activerecord:
-    attributes:
-      document:
-        title: "タイトル"
-        document_image: "ドキュメント画像"
-    errors:
-      models:
-        document:
-          attributes:
-            title:
-              blank: "を入力してください"
-            document_image:
-              blank: "を選択してください"
-  ja:
-  devise:
-    failure:
-      already_confirmed: 'はすでに確認されています。ログインしてください。'
-      confirmation_period_expired: '%{period}以内に確認してください。もう一度お試しください。'
-      expired: 'の有効期限が切れています。もう一度お試しください。'
-      not_found: 'が見つかりません。もう一度お試しください。'
-      not_locked: 'はロックされていません。'
-    models:
-      user:
-        invalid: 'メールアドレスまたはパスワードが違います。'
-    passwords:
-      no_token: 'パスワード再設定の有効期限が切れています。もう一度パスワード再設定を行ってください。'
-      send_instructions: 'パスワード再設定用のメールを送信しました。ご確認ください。'
-      updated: 'パスワードを変更しました。'
-    registrations:
-      signed_up: 'アカウント登録が完了しました。%{resource}の確認メールを送信しました。'
-      signed_up_but_inactive: 'アカウント登録が完了しました。%{resource}の確認メールをご確認ください。'
-      signed_up_but_locked: 'アカウントがロックされています。%{resource}の確認メールをご確認ください。'
-      updated: 'アカウント情報を変更しました。'
-      update_needs_confirmation: 'アカウント情報を変更するためには、確認が必要です。%{resource}の確認メールを送信しました。'
-    sessions:
-      signed_in: 'ログインしました。'
-      signed_out: 'ログアウトしました。'
-    unlocks:
-      send_instructions: 'アカウントのロック解除用のメールを送信しました。ご確認ください。'
-      unlocked: 'アカウントのロックが解除されました。'
-    errors:
-      not_saved:
-        one: '1つのエラーがあります。%{resource}が保存できませんでした。'
-        other: '%{count}個のエラーがあります。%{resource}が保存できませんでした。'
-  ja:
-  activerecord:
-    attributes:
-      partner:
-        name: "名前"
-        address: "住所"
-        url: "URL"
-        established: "設立年"
-    errors:
-      messages:
-        blank: "を入力してください"
-      models:
-        partner:
-          attributes:
-            name:
-              blank: "を入力してください"
-            address:
-              blank: "を入力してください"
-            url:
-              blank: "を入力してください"
-            established:
-              blank: "を入力してください"
+  # ja:
+  # activerecord:
+  #   attributes:
+  #     document:
+  #       title: "タイトル"
+  #       document_image: "ドキュメント画像"
+  #   errors:
+  #     models:
+  #       document:
+  #         attributes:
+  #           title:
+  #             blank: "を入力してください"
+  #           document_image:
+  #             blank: "を選択してください"
+  # ja:
+  # devise:
+  #   failure:
+  #     already_confirmed: 'はすでに確認されています。ログインしてください。'
+  #     confirmation_period_expired: '%{period}以内に確認してください。もう一度お試しください。'
+  #     expired: 'の有効期限が切れています。もう一度お試しください。'
+  #     not_found: 'が見つかりません。もう一度お試しください。'
+  #     not_locked: 'はロックされていません。'
+  #   models:
+  #     user:
+  #       invalid: 'メールアドレスまたはパスワードが違います。'
+  #   passwords:
+  #     no_token: 'パスワード再設定の有効期限が切れています。もう一度パスワード再設定を行ってください。'
+  #     send_instructions: 'パスワード再設定用のメールを送信しました。ご確認ください。'
+  #     updated: 'パスワードを変更しました。'
+  #   registrations:
+  #     signed_up: 'アカウント登録が完了しました。%{resource_name}の確認メールを送信しました。'
+  #   signed_up_but_inactive: 'アカウント登録が完了しました。%{resource_name}の確認メールをご確認ください。'
+  #   signed_up_but_locked: 'アカウントがロックされています。%{resource_name}の確認メールをご確認ください。'
+  #     updated: 'アカウント情報を変更しました。'
+  #     update_needs_confirmation: 'アカウント情報を変更するためには、確認が必要です。%{resource}の確認メールを送信しました。'
+  #   sessions:
+  #     signed_in: 'ログインしました。'
+  #     signed_out: 'ログアウトしました。'
+  #   unlocks:
+  #     send_instructions: 'アカウントのロック解除用のメールを送信しました。ご確認ください。'
+  #     unlocked: 'アカウントのロックが解除されました。'
+  #   errors:
+  #     not_saved:
+  #       one: '1つのエラーがあります。%{resource}が保存できませんでした。'
+  #       other: '%{count}個のエラーがあります。%{resource}が保存できませんでした。'
+  # ja:
+  # activerecord:
+  #   attributes:
+  #     partner:
+  #       name: "名前"
+  #       address: "住所"
+  #       url: "URL"
+  #       established: "設立年"
+  #   errors:
+  #     messages:
+  #       blank: "を入力してください"
+  #     models:
+  #       partner:
+  #         attributes:
+  #           name:
+  #             blank: "を入力してください"
+  #           address:
+  #             blank: "を入力してください"
+  #           url:
+  #             blank: "を入力してください"
+  #           established:
+  #             blank: "を入力してください"
 
 
 
