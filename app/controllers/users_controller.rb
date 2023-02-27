@@ -11,7 +11,6 @@ class UsersController < ApplicationController
 
   private
 
-  
   def admin_user?
     if current_user.id == params[:id].to_i || current_user.admin?
       return

@@ -1,12 +1,18 @@
 class PartnersController < ApplicationController
-  before_action :set_partner, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :set_partner, only: [:show, :edit, :update, :destroy]
 
   def index
-    @q = Partner.ransack(params[:q])
-    @partners = @q.result(distinct: true)
+    # binding.pry
+    @search = Partner.ransack(params[:q])
+    @partners = @search.result
+
+    # if current_user.admin?
+    #   @partners = Partner.all
+    # # else
+    # #   @partners = Partner.all
+    # end
   end
-  
 
   def show
     @partner = Partner.eager_load(:product_infos, :case_studies).find(params[:id])
@@ -30,32 +36,32 @@ class PartnersController < ApplicationController
   end
 
   def edit
-    unless @partner.user_id == current_user.id
+    unless current_user == @partner.user || current_user.admin?
       redirect_to partners_path, alert: '不正なアクセスです'
     end
   end
 
   def update
-    unless @partner.user_id == current_user.id
-      redirect_to partners_path, alert: '不正なアクセスです'
-    end
-
-    if @partner.update(partner_params)
-      redirect_to partners_path, notice: "会社情報を編集しました！"
+    if current_user == @partner.user || current_user.admin?
+      if @partner.update(partner_params)
+        redirect_to partners_path, notice: "会社情報を編集しました！"
+      else
+        render :edit
+      end
     else
-      render :edit
-    end
-  end
-
-  def destroy
-    unless @partner.user_id == current_user.id
       redirect_to partners_path, alert: '不正なアクセスです'
     end
-
-    @partner.destroy
-    redirect_to partners_path, notice:"会社情報を削除しました！"
   end
-
+  
+  def destroy
+    if current_user == @partner.user || current_user.admin?
+      @partner.destroy
+      redirect_to partners_path, notice:"会社情報を削除しました！"
+    else
+      redirect_to partners_path, alert: '不正なアクセスです'
+    end
+  end
+  
   def confirm
     @partner = current_user.partners.build(partner_params)
     @costs = Cost.all
@@ -82,14 +88,15 @@ class PartnersController < ApplicationController
       case_studies_attributes: [:id, :name, :content, :_destroy, :image, :image_cache])
   end
 
-
-
   def set_partner
     @partner = Partner.find(params[:id])
   end
-
+  
   def set_current_user
     @current_user = current_user
   end
 end
+
+
+
 

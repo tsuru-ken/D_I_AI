@@ -1,6 +1,15 @@
 ---
 ja:
   activerecord:
+    attributes:
+      document:
+        title: "タイトル"
+        document_image: "ドキュメント画像"
+      partner:
+        name: "名前"
+        address: "住所"
+        url: "URL"
+        established: "設立年"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -182,3 +191,4 @@ ja:
       short: "%m/%d %H:%M"
     pm: 午後
   Ai_category: "AIの種類"
+  

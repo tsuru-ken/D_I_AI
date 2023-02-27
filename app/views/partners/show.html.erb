@@ -80,7 +80,9 @@
         <% end %>
         <div class="text-center">
           <%= link_to "会社一覧に戻る", partners_path, class: "btn btn-outline-info" %>
-          <%= link_to "編集", edit_partner_path(@partner), class: "btn btn-outline-info" %>
+          <% if current_user && (@partner.user == current_user || current_user.admin?) %>
+            <td><%= link_to "編集", edit_partner_path(@partner), class: "btn btn-outline-info" %></td>
+          <% end %>
         </div>
       </div>
     </div>

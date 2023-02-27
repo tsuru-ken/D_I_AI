@@ -5,8 +5,9 @@
         <div class="row g-0">
           <div class="col-md-6">
             <div class="d-flex align-items-center justify-content-center h-100">
-              <%= image_tag @document.document_image.url, class: "img-fluid document-image" %>
-              
+              <% if @document.document_image.present? %>
+                <%= image_tag @document.document_image.url, class: "img-fluid document-image" %>
+              <% end %>
             </div>
           </div>
           <div class="col-md-6">
@@ -37,7 +38,9 @@
       </div>
 
       <div class="d-grid gap-2 d-md-flex justify-content-end mb-3">
-        <%= link_to '編集', edit_document_path(@document), class: "btn btn-outline-secondary me-md-2" %>
+        <% if current_user && (@document.user == current_user || current_user.admin?) %>
+          <%= link_to '編集', edit_document_path(@document), class: "btn btn-outline-secondary me-md-2" %>
+        <% end %>
         <%= link_to '戻る', documents_path, class: "btn btn-outline-secondary" %>
       </div>
       <div class="text-center">
@@ -57,4 +60,3 @@
 
 
 
-<%# <%= form.submit "ライブラリのOCR実行", class: "btn btn-primary" %> 

@@ -86,7 +86,7 @@ gem 'rails_admin', '~> 3.0'
 gem 'cancancan'
 
 # 検索機能
-gem 'ransack'
+gem 'ransack', '~> 3.2.1'
 
 # URLリンク機能
 gem 'rinku'

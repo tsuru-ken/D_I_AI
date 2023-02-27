@@ -3,8 +3,6 @@ class DocumentsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :authenticate_user!
   
-
-
   # GET /documents or /documents.json
   def index
     @documents = Document.all
@@ -12,6 +10,8 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1 or /documents/1.json
   def show
+    @document = Document.find(params[:id])
+    # send_file_headers! # 追加する
   end
 
   # GET /documents/new
@@ -27,7 +27,7 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     @document.user = current_user
-  
+
     respond_to do |format|
       if @document.save
         format.html { redirect_to document_url(@document) }
@@ -63,7 +63,7 @@ class DocumentsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  # gemのOCR
   # def execute_ocr
   #   @document = Document.find(params[:document_id])
   #   # ローカル保存用
@@ -76,7 +76,7 @@ class DocumentsController < ApplicationController
   #   @text = 'テキストが検出できませんでした' if @text.blank?
   # end
 
-  # S3の場合はそのままのURL
+  #AIのOCR S3の場合
   # def execute_vision_api
   #   @document = Document.find(params[:document_id])
   #   image = @document.document_image.url(query: { 'response-content-disposition' => 'attachment' })
@@ -90,7 +90,7 @@ class DocumentsController < ApplicationController
   #   end
   # end
 
-   # ローカルに保存している場合はこっち
+  #AIのOCR ローカル画像の場合
   def execute_vision_api
     @document = Document.find(params[:document_id])
     image_url = "#{Rails.root}/public#{@document.document_image.url}"
