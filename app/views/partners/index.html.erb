@@ -17,19 +17,19 @@
               <div class="row">
                 <div class="col-sm-3 mb-3">
                   <div>
-                    <%= f.label :costs_ids_eq_any, "コスト感" %>
+                    <%= f.label :costs_id_eq_any, "コスト感" %>
                   </div>
                   <div>
                     <%= f.collection_select :costs_id_eq, Cost.all, :id, :breakdown, { prompt: "選択してください" }, { class: "form-select" } %>
                   </div>
                 </div>
                 <div class="col-sm-3 mb-3">
-                  <%= f.label :service_contents_id_eq_any, "提供サービス" %>
-                  <%= f.collection_select :service_contents_id_eq, ServiceContent.all, :id, :division, { prompt: true }, { class: "form-select" } %>
+                  <%= f.label :service_contents_division_eq, "提供サービス" %>
+                  <%= f.collection_select :service_contents_division_eq, ServiceContent.all, :division, :division, { prompt: true }, { class: "form-select" } %>
                 </div>
                 <div class="col-sm-3 mb-3">
-                  <%= f.label :ai_categories_id_eq_any, "AIカテゴリー" %>
-                  <%= f.collection_select :ai_categories_id_eq, AiCategory.all, :id, :genre, { prompt: true }, { class: "form-select" } %>
+                  <%= f.label :ai_categories_genre_eq, "AIカテゴリー" %>
+                  <%= f.collection_select :ai_categories_genre_eq, AiCategory.all, :genre, :genre, { prompt: true }, { class: "form-select" } %>
                 </div>
                 <div class="col-sm-3 mb-3">
                   <%= f.label :name_cont, "会社名でキーワード検索" %>

@@ -5,7 +5,7 @@
       <%= form_with(model: @partner, local: true, url: choose_new_or_edit) do |form| %>
         <% if @partner.errors.any? %>
           <div class="alert alert-danger" id="error_explanation">
-            <h2><%= pluralize(@partner.errors.count, "error") %>があります。</h2>
+            <h2><%= pluralize(@partner.errors.count, "件のエラーがあります。") %></h2>
             <ul>
             <% @partner.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>

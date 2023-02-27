@@ -3,11 +3,15 @@ class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
 
   def index
-    if current_user.admin?
-      @partners = Partner.all
-    else
-      @partners = Partner.all
-    end
+    # binding.pry
+    @search = Partner.ransack(params[:q])
+    @partners = @search.result
+
+    # if current_user.admin?
+    #   @partners = Partner.all
+    # # else
+    # #   @partners = Partner.all
+    # end
   end
 
   def show
@@ -36,7 +40,7 @@ class PartnersController < ApplicationController
       redirect_to partners_path, alert: '不正なアクセスです'
     end
   end
-  
+
   def update
     if current_user == @partner.user || current_user.admin?
       if @partner.update(partner_params)
