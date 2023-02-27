@@ -13,6 +13,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+  <div>
     <div>
       <ul style="display: flex; justify-content: flex-end; font-weight: bold;">
         <li style="display: inline-block;">
@@ -28,12 +29,6 @@
         <li style="display: inline-block;">
           <%= link_to "AI会社検索", partners_path, style: "margin-right: 10px;" %>
         </li>
-        <li style="display: inline-block;">
-          <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, style: "margin-right: 10px;" %>
-        </li>
-        <li style="display: inline-block;">
-          <%= link_to "ゲスト管理者ログイン", users_guest_admin_sign_in_path, method: :post, style: "margin-right: 10px;" %>
-        </li>
         <% if user_signed_in? %>
           <li style="display: inline-block;">
             <%= link_to "マイページ", user_path(current_user), style: "margin-right: 10px;" %>
@@ -48,9 +43,18 @@
           <li style="display: inline-block;">
             <%= link_to "ログイン", new_user_session_path, style: "margin-right: 10px;" %>
           </li>
+          <% if !user_signed_in? %>
+            <li style="display: inline-block;">
+              <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, style: "margin-right: 10px;" %>
+            </li>
+            <li style="display: inline-block;">
+              <%= link_to "ゲスト管理者ログイン", users_guest_admin_sign_in_path, method: :post, style: "margin-right: 10px;" %>
+            </li>
+          <% end %>
         <% end %>
       </ul>
     </div>
+
     <div style="display: flex; justify-content: center;">
     <div class="texts-wrapper">
       <div class="contents-title text-center">
