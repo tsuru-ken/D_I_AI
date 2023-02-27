@@ -16,7 +16,7 @@ RSpec.describe Document, type: :system do
     end
     context 'ドキュメントが正常にアップロードされた場合' do
       it 'AIを試す画面に移動できる' do
-        login 
+        login
         click_on 'AIモデル一覧'
         click_button('search_btn_1')
         click_on '新しく文字認識を試す'

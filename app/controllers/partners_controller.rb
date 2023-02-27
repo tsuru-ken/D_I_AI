@@ -3,15 +3,8 @@ class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
 
   def index
-    # binding.pry
     @search = Partner.ransack(params[:q])
     @partners = @search.result
-
-    # if current_user.admin?
-    #   @partners = Partner.all
-    # # else
-    # #   @partners = Partner.all
-    # end
   end
 
   def show
