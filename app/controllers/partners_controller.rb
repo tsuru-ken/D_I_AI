@@ -45,7 +45,7 @@ class PartnersController < ApplicationController
       redirect_to partners_path, alert: '不正なアクセスです'
     end
   end
-  
+
   def destroy
     if current_user == @partner.user || current_user.admin?
       @partner.destroy
@@ -54,7 +54,7 @@ class PartnersController < ApplicationController
       redirect_to partners_path, alert: '不正なアクセスです'
     end
   end
-  
+
   def confirm
     @partner = current_user.partners.build(partner_params)
     @costs = Cost.all
@@ -84,7 +84,7 @@ class PartnersController < ApplicationController
   def set_partner
     @partner = Partner.find(params[:id])
   end
-  
+
   def set_current_user
     @current_user = current_user
   end

@@ -2,28 +2,22 @@ class DocumentsController < ApplicationController
   before_action :set_document, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :authenticate_user!
-  
-  # GET /documents or /documents.json
+
   def index
     @documents = Document.all
   end
 
-  # GET /documents/1 or /documents/1.json
   def show
     @document = Document.find(params[:id])
-    # send_file_headers! # 追加する
   end
 
-  # GET /documents/new
   def new
     @document = Document.new
   end
 
-  # GET /documents/1/edit
   def edit
   end
 
-  # POST /documents or /documents.json
   def create
     @document = Document.new(document_params)
     @document.user = current_user
@@ -39,12 +33,10 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /documents/1 or /documents/1.json
   def update
     respond_to do |format|
       if @document.update(document_params)
         format.html { redirect_to document_url(@document) }
-        # format.html { redirect_to document_url(@document), notice: "Document was successfully updated." }
         format.json { render :show, status: :ok, location: @document }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +45,6 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # DELETE /documents/1 or /documents/1.json
   def destroy
     @document.destroy
 
@@ -105,12 +96,10 @@ class DocumentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_document
       @document = Document.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def document_params
       params.require(:document).permit(:title, :description, :document_image)
     end

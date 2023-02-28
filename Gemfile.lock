@@ -1856,7 +1856,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.6)
   rails_admin (~> 3.0)
-  ransack (~> 3.2.1)
+  ransack
   rexml
   rinku
   rspec-rails

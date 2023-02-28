@@ -119,7 +119,7 @@ let!(:user) { FactoryBot.create(:secound_user)}
           fk.to_table == 'service_contents'
         end ,{with: 'AIコンサル'}
         product_info = ProductInfo.new(name: "製品情報", content: "製品情報1", partner_id: 1)
-        product_info.save 
+        product_info.save
         case_study = CaseStudy.new(name: "導入事例１", content: "導入事例の内容", partner_id: 1 )
         case_study.save
         click_on '保存'

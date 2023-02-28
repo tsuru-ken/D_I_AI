@@ -9,5 +9,4 @@ class AiCategory < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     ["partners"]
   end
-  
 end
